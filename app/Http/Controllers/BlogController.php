@@ -13,7 +13,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::with('user')->get();
+        $blogs = Blog::with('author')->get();
         return view('admin.blogs.index', compact('blogs'));
     }
 
@@ -49,7 +49,14 @@ class BlogController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $blog = Blog::find($id);
+        return view('admin.blogs.show', compact('blog'));
+    }
+
+    public function all()
+    {
+        $blogs = Blog::all();
+        return view('admin.blogs.all', compact('blogs'));
     }
 
     /**

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -25,7 +26,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-
 Route::middleware('auth')->group(function () {
 
     #admin routes
@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
         Route::view('/admin/dashboard', 'admin.dashboard')->name('admin.dashboard');
 
         #Blogs
-        Route::resource('blogs', BlogController::class);
+        Route::resource('blogs', BlogController::class)->except(['show', 'all']);;
 
         #Products
         Route::resource('products', ProductController::class);
@@ -42,6 +42,12 @@ Route::middleware('auth')->group(function () {
     #user routes
     Route::middleware(['role:user'])->group(function () {
         Route::view('home', 'user.home')->name('user.home');
+
+        // comments routes
+        Route::post('blogs/{blog}/comments', [CommentController::class, 'store'])->name('comments.store');
+        Route::put('comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
+
+
     });
 
     #profile
@@ -49,5 +55,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+# blogs route for guest or unauth user
+Route::get('blogs/all/', [BlogController::class, 'all'])->name('blogs.all');
+Route::get('blogs/{blog}/', [BlogController::class, 'show'])->name('blogs.show');
 
 require __DIR__.'/auth.php';

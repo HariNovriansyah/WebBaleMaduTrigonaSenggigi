@@ -16,7 +16,7 @@
                     <a href="{{ route('blogs.edit',$blog->id ) }}">Edit Blog</a>
 
                     <p>{{ $blog->content }}</p>
-                    <p>Written by: {{ $blog->user->name }}</p>
+                    <p>Written by: {{ $blog->author->name }}</p>
                     <p>Published on: {{ $blog->created_at->format('d M Y') }}</p>
 
                     <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST" style="display:inline;">
