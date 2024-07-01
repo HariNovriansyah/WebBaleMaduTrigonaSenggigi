@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,9 @@ Route::middleware('auth')->group(function () {
     #admin routes
     Route::middleware(['role:admin'])->group(function () {
         Route::view('/admin/dashboard', 'admin.dashboard')->name('admin.dashboard');
+
+        #Blogs
+        Route::resource('blogs', BlogController::class);
     });
 
     #user routes
