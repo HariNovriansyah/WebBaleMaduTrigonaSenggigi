@@ -2,7 +2,8 @@
 @section('content')
 <h1>DASHBOARD ADMIN</h1>
 
-<a href="{{ route('blogs.index') }}">Blogs</a>
+<a href="{{ route('blogs.index') }}">Blogs</a><br>
+<a href="{{ route('products.index') }}">Products</a>
 
 
 <form method="POST" action="{{ route('logout') }}">

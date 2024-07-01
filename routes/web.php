@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,9 @@ Route::middleware('auth')->group(function () {
 
         #Blogs
         Route::resource('blogs', BlogController::class);
+
+        #Products
+        Route::resource('products', ProductController::class);
     });
 
     #user routes
