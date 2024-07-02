@@ -12,6 +12,7 @@
             <p>{{ $product->description }}</p>
             <p>Price: ${{ $product->price }}</p>
             <p>Stock: {{ $product->stock }}</p>
+            <a href="{{ route('order.create', $product->id) }}">Order</a>
         </div>
     @endforeach
 @endif

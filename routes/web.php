@@ -4,7 +4,11 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\OrderController;
+
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +46,15 @@ Route::middleware('auth')->group(function () {
     #user routes
     Route::middleware(['role:user'])->group(function () {
         Route::view('home', 'user.home')->name('user.home');
+        // order routes
+        Route::get('/products/{product}/order', [OrderController::class, 'create'])->name('order.create');
+        Route::post('/products/{product}/order', [OrderController::class, 'store'])->name('order.store');
+
+        // payments routes
+        Route::get('/payment/{orderId}', [PaymentController::class, 'show'])->name('payment.show');
+        Route::post('/payment/callback', [PaymentController::class, 'callback'])->name('payment.callback');
+        Route::get('/payment/success/{orderId}', [PaymentController::class, 'success'])->name('payment.success');
+        Route::get('/payment/pending/{orderId}', [PaymentController::class, 'pending'])->name('payment.pending');
 
         // comments routes
         Route::post('blogs/{blog}/comments', [CommentController::class, 'store'])->name('comments.store');
