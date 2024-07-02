@@ -33,10 +33,10 @@ Route::middleware('auth')->group(function () {
         Route::view('/admin/dashboard', 'admin.dashboard')->name('admin.dashboard');
 
         #Blogs
-        Route::resource('blogs', BlogController::class)->except(['show', 'all']);;
+        Route::resource('blogs', BlogController::class)->except(['show', 'all']);
 
         #Products
-        Route::resource('products', ProductController::class);
+        Route::resource('products', ProductController::class)->except(['show']);
     });
 
     #user routes
@@ -59,5 +59,7 @@ Route::middleware('auth')->group(function () {
 # blogs route for guest or unauth user
 Route::get('blogs/all/', [BlogController::class, 'all'])->name('blogs.all');
 Route::get('blogs/{blog}/', [BlogController::class, 'show'])->name('blogs.show');
+
+Route::get('/products/details', [ProductController::class, 'show'])->name('products.show');
 
 require __DIR__.'/auth.php';

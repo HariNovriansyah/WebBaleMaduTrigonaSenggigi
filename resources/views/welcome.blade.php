@@ -1,4 +1,4 @@
-@extends($layout)
+@extends('app.layouts.app')
 @section('content')
 <h1>Ini adalah Landing Page</h1>
 @if (Route::has('login'))
