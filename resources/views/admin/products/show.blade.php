@@ -17,4 +17,12 @@
     @endforeach
 @endif
 
+<h2>Reviews</h2>
+@foreach($product->reviews as $review)
+    <div>
+        <p><strong>{{ $review->user->name }}</strong> rated {{ $review->rating }} out of 5</p>
+        <p>{{ $review->review }}</p>
+    </div>
+@endforeach
+
 @endsection

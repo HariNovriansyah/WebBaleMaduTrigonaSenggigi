@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ReviewController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -61,6 +62,8 @@ Route::middleware('auth')->group(function () {
         Route::post('blogs/{blog}/comments', [CommentController::class, 'store'])->name('comments.store');
         Route::put('comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
 
+        //Review and Rating routes
+        Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
     });
 

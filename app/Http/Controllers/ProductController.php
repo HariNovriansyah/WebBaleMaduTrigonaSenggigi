@@ -46,8 +46,11 @@ class ProductController extends Controller
      */
     public function show()
     {
-        $products = Product::all();
-        return view('admin.products.show', compact('products'));
+    // $products = Product::with('reviews')->get();
+    // return view('admin.products.index', compact('products'));
+
+    $products = Product::with('reviews')->get();
+    return view('admin.products.show', compact('products'));
     }
     /**
      * Show the form for editing the specified resource.
