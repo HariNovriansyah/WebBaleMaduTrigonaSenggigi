@@ -1,52 +1,83 @@
-<x-guest-layout>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+</head>
+<body>
+    <h1>Register</h1>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <label for="name">Name</label>
+            <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name">
+            @error('name')
+                <div>{{ $message }}</div>
+            @enderror
+        </div>
+
+        <!-- Username -->
+        <div>
+            <label for="username">Username</label>
+            <input id="username" type="text" name="username" value="{{ old('username') }}" required autocomplete="username">
+            @error('username')
+                <div>{{ $message }}</div>
+            @enderror
+        </div>
+
+        <!-- Address -->
+        <div>
+            <label for="address">Address</label>
+            <input id="address" type="text" name="address" value="{{ old('address') }}" required autocomplete="address">
+            @error('address')
+                <div>{{ $message }}</div>
+            @enderror
         </div>
 
         <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <div>
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email">
+            @error('email')
+                <div>{{ $message }}</div>
+            @enderror
         </div>
 
         <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div>
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" required autocomplete="new-password">
+            @error('password')
+                <div>{{ $message }}</div>
+            @enderror
         </div>
 
         <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        <div>
+            <label for="password_confirmation">Confirm Password</label>
+            <input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password">
+            @error('password_confirmation')
+                <div>{{ $message }}</div>
+            @enderror
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
+        <!-- Phone Number -->
+        <div>
+            <label for="phone_number">Phone Number</label>
+            <input id="phone_number" type="text" name="phone_number" value="{{ old('phone_number') }}" required autocomplete="phone_number">
+            @error('phone_number')
+                <div>{{ $message }}</div>
+            @enderror
+        </div>
 
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
+        <!-- Role (hidden input, default to 'user') -->
+        <input type="hidden" name="role" value="user">
+
+        <div>
+            <a href="{{ route('login') }}">Already registered?</a>
+            <button type="submit">Register</button>
         </div>
     </form>
-</x-guest-layout>
+</body>
+</html>

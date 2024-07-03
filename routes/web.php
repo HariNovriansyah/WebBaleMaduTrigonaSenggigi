@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
         // order routes
         Route::get('/products/{product}/order', [OrderController::class, 'create'])->name('order.create');
         Route::post('/products/{product}/order', [OrderController::class, 'store'])->name('order.store');
+        Route::get('order/history', [OrderController::class, 'orderHistory'])->name('orders.history');
 
         // payments routes
         Route::get('/payment/{orderId}', [PaymentController::class, 'show'])->name('payment.show');

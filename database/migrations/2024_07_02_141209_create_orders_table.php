@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('id')->primary();;
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('product_id');
+            $table->integer('quantity'); //new code
             $table->decimal('total_price', 10, 2);
             $table->string('status')->default('pending');
             $table->timestamps();

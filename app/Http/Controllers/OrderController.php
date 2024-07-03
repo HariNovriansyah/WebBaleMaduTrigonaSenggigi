@@ -25,8 +25,15 @@ class OrderController extends Controller
         $order->user_id = auth()->id();
         $order->product_id = $product->id;
         $order->total_price = $totalPrice;
+        $order->quantity = $request->input('quantity'); //new code
         $order->status = 'pending';
         $order->save();
         return redirect()->route('payment.show', $order->id);
+    }
+
+    public function orderHistory()
+    {
+        $orders = Order::where('user_id', auth()->id())->with('product')->get();
+        return view('user.orders.history', compact('orders'));
     }
 }
