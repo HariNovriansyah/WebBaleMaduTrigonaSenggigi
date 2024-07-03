@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Product;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class OrderController extends Controller
 {
@@ -36,4 +37,11 @@ class OrderController extends Controller
         $orders = Order::where('user_id', auth()->id())->with('product')->get();
         return view('user.orders.history', compact('orders'));
     }
+
+    public function generateReceipt(Order $order)
+    {
+        $pdf = PDF::loadView('user.orders.receipt', compact('order'));
+        return $pdf->download('receipt.pdf');
+    }
+
 }

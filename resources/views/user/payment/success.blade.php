@@ -11,6 +11,9 @@
     $userHasReviewed = $order->product->reviews->contains('user_id', auth()->id());
 @endphp
 
+{{-- Tombol untuk mengunduh struk sebagai PDF --}}
+<a href="{{ route('order.receipt', $order->id) }}" class="btn btn-primary">Download Receipt (PDF)</a>
+
 @if (!$userHasReviewed)
     <!-- Form for rating and review -->
     <form method="POST" action="{{ route('reviews.store') }}">

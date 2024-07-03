@@ -65,6 +65,9 @@ Route::middleware('auth')->group(function () {
         //Review and Rating routes
         Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
+        //Cetak PDF
+        Route::get('/order/{order}/receipt', [OrderController::class, 'generateReceipt'])->name('order.receipt');
+
     });
 
     #profile
