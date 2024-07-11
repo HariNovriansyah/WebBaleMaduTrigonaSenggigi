@@ -3,7 +3,8 @@
 <h1>DASHBOARD ADMIN</h1>
 
 <a href="{{ route('blogs.index') }}">Blogs</a><br>
-<a href="{{ route('products.index') }}">Products</a>
+<a href="{{ route('products.index') }}">Products</a><br>
+<a href="{{ route('admin.reports.orders') }}">Report</a>
 
 
 <form method="POST" action="{{ route('logout') }}">

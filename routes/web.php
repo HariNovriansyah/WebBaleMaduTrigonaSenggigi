@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\AdminReportController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,10 @@ Route::middleware('auth')->group(function () {
 
         #Products
         Route::resource('products', ProductController::class)->except(['show']);
+
+        #Admin Report
+        Route::get('/admin/reports/orders', [AdminReportController::class, 'index'])->name('admin.reports.orders');
+        Route::get('/admin/reports/orders/download', [AdminReportController::class, 'downloadPdf'])->name('admin.reports.orders.download');
     });
 
     #user routes
