@@ -87,27 +87,27 @@ class ChatController extends Controller
     }
 
     public function unreadCount()
-    {
-        $user = Auth::user();
+{
+    $user = Auth::user();
 
-        if ($user->role == 'admin') {
-            $users = User::where('role', 'user')->get();
-            $unreadCounts = [];
+    if ($user->role == 'admin') {
+        $users = User::where('role', 'user')->get();
+        $unreadCounts = [];
 
-            foreach ($users as $user) {
-                $unreadCounts[$user->id] = Chat::where('sender_id', $user->id)
-                                                ->where('receiver_id', Auth::id())
-                                                ->whereNull('read_at')
-                                                ->count();
-            }
-
-            return response()->json($unreadCounts);
-        } else {
-            $unreadCount = Chat::where('receiver_id', Auth::id())
-                               ->whereNull('read_at')
-                               ->count();
-            return response()->json(['unread_count' => $unreadCount]);
+        foreach ($users as $item) {
+            $unreadCounts[$item->id] = Chat::where('sender_id', $item->id)
+                                            ->where('receiver_id', $user->id)
+                                            ->whereNull('read_at')
+                                            ->count();
         }
+
+        return response()->json($unreadCounts);
+    } else {
+        $unreadCount = Chat::where('receiver_id', $user->id)
+                           ->whereNull('read_at')
+                           ->count();
+        return response()->json(['unread_count' => $unreadCount]);
     }
+}
 
 }
