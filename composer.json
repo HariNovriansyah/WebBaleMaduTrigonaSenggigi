@@ -15,6 +15,7 @@
         "midtrans/midtrans-php": "^2.5"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^3.1",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
@@ -41,6 +42,9 @@
             "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:models --write",
+            "@php artisan ide-helper:meta",
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ],
         "post-root-package-install": [
@@ -52,7 +56,9 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+                 "barryvdh/laravel-ide-helper"
+            ]
         }
     },
     "config": {

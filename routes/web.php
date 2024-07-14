@@ -8,7 +8,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AdminReportController;
-
+use App\Http\Controllers\Api\ChatController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -34,6 +34,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
 
+    Route::get('/chat', [ChatController::class, 'index']);
     #admin routes
     Route::middleware(['role:admin'])->group(function () {
         Route::view('/admin/dashboard', 'admin.dashboard')->name('admin.dashboard');

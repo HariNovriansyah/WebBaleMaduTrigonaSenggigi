@@ -23,7 +23,7 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(LoginRequest $request)
     {
         $request->authenticate();
 
@@ -31,13 +31,19 @@ class AuthenticatedSessionController extends Controller
 
         $url =  '';
 
+        $user = Auth::user();
+        $token = $user->createToken('API Token')->plainTextToken;
+
         if($request->user()->role === 'admin'){
             $url = '/admin/dashboard';
         }elseif($request->user()->role === 'user'){
             $url = '/home';
         }
 
-        return redirect()->intended($url);
+        return response()->json([
+            'redirect_url' => $url,
+            'token' => $token,
+        ]);
     }
 
     /**

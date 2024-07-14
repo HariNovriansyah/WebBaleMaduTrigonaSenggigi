@@ -50,4 +50,15 @@ class User extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
+    public function sentMessages()
+    {
+        return $this->hasMany(Chat::class, 'sender_id');
+    }
+
+    // Relasi ke Chat sebagai penerima
+    public function receivedMessages()
+    {
+        return $this->hasMany(Chat::class, 'receiver_id');
+    }
+
 }
