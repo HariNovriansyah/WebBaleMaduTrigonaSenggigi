@@ -71,12 +71,43 @@ class ChatController extends Controller
         return response()->json(['status' => 'success']);
     }
 
-    public function markAsRead($id)
+    public function markAsRead(Request $request)
     {
-        $chat = Chat::find($id);
-        $chat->read_at = now();
-        $chat->save();
+        $userId = $request->input('user_id');
+        $adminId = Auth::id();
+        $isAdmin = Auth::user()->role == 'admin';
+
+        if ($isAdmin && $userId) {
+            Chat::where('sender_id', $userId)->whereNull('read_at')->update(['read_at' => now()]);
+        } else {
+            Chat::where('receiver_id', $adminId)->whereNull('read_at')->update(['read_at' => now()]);
+        }
 
         return response()->json(['status' => 'success']);
     }
+
+    public function unreadCount()
+    {
+        $user = Auth::user();
+
+        if ($user->role == 'admin') {
+            $users = User::where('role', 'user')->get();
+            $unreadCounts = [];
+
+            foreach ($users as $user) {
+                $unreadCounts[$user->id] = Chat::where('sender_id', $user->id)
+                                                ->where('receiver_id', Auth::id())
+                                                ->whereNull('read_at')
+                                                ->count();
+            }
+
+            return response()->json($unreadCounts);
+        } else {
+            $unreadCount = Chat::where('receiver_id', Auth::id())
+                               ->whereNull('read_at')
+                               ->count();
+            return response()->json(['unread_count' => $unreadCount]);
+        }
+    }
+
 }

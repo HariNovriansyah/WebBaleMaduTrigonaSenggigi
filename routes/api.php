@@ -21,6 +21,8 @@ use App\Http\Controllers\Api\ChatController;
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/chats', [ChatController::class, 'index']);
     Route::post('/chats', [ChatController::class, 'store']);
+    Route::post('/chats/mark-as-read', [ChatController::class, 'markAsRead']);
+    Route::get('/chats/unread-count', [ChatController::class, 'unreadCount']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

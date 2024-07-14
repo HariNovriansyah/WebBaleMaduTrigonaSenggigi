@@ -8,6 +8,7 @@
     <title>Madu Trigona</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="user-id" content="{{ Auth::user()->id }}">
+    <meta name="user-role" content="{{ Auth::user()->role }}">
     <meta name="api-token" content="">
     @yield('style')
     <style>
@@ -29,19 +30,23 @@
             font-size: 24px;
             cursor: pointer;
             z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .chat-window {
-            display: none;
             position: fixed;
             bottom: 80px;
             right: 20px;
             width: 300px;
-            height: 400px;
+            height: 500px;
             border: 1px solid #ddd;
             background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             z-index: 999;
+            display: flex;
+            flex-direction: column;
         }
 
         .chat-header {
@@ -66,12 +71,14 @@
         .chat-footer {
             padding: 10px;
             border-top: 1px solid #ddd;
+            margin-top: auto;
         }
 
         .chat-bubble {
             border-radius: 10px;
             padding: 10px;
             margin-bottom: 10px;
+            width: fit-content;
             max-width: 75%;
             word-wrap: break-word;
         }
@@ -100,13 +107,27 @@
             margin-top: 20px;
         }
 
-        select,
-        textarea {
+        select {
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
+        }
+
+        textarea {
+            width: 100%;
+            /* Atur lebar 100% agar mengisi parent element */
+            max-width: calc(100%);
+            /* Misalnya, batasi lebar maksimum dengan mengurangi margin atau padding jika ada */
+            padding: 10px;
+            min-height: 42px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            resize: vertical;
+            /* Hanya izinkan mengubah tinggi, bukan lebar */
+            box-sizing: border-box;
         }
 
         button {
@@ -131,7 +152,6 @@
             @yield('content')
         </main>
         @include('app.components.chat')
-
     </div>
     @include('admin.layouts.footer')
     @yield('script')
@@ -141,58 +161,64 @@
             $('#chat-window').toggle();
         }
 
-        $(document).ready(function() {
-            // Show/hide chat window
-            $('.floating-chat-button').on('click', function() {
-                toggleChatWindow();
-            });
-
-            // AJAX setup with CSRF token
-            $.ajaxSetup({
+        function fetchChats(userId = null) {
+            var url = '/api/chats';
+            if (userId) {
+                url += '?user_id=' + userId;
+            }
+            $.ajax({
+                url: url,
+                method: 'GET',
                 headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    'Authorization': 'Bearer ' + $('meta[name="api-token"]').attr('content')
+                },
+                success: function(data) {
+                    var chatBox = $('#chat-box');
+                    chatBox.empty();
+                    data.forEach(function(chat) {
+                        var createdAt = new Date(chat.created_at);
+                        var formattedTime = createdAt.toLocaleString();
+                        var bubbleClass = chat.sender_id == $('meta[name="user-id"]').attr('content') ? 'sent' : 'received';
+                        chatBox.append('<div class="chat-bubble ' + bubbleClass +
+                            '"><p style="margin:0;"><strong>' + chat.sender.name + '</strong></p><p style="margin:0;">' + chat.message + '<br><small style="font-size:9px;">' + formattedTime +
+                            '</small>' + '</p></div>');
+                    });
+                    chatBox.scrollTop(chatBox[0].scrollHeight);
                 }
             });
+        }
 
-            // Get token from localStorage and set meta tag
+        function fetchUnreadCount() {
+            $.ajax({
+                url: '/api/chats/unread-count',
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + $('meta[name="api-token"]').attr('content')
+                },
+                success: function(data) {
+                    var unreadCount = data.unread_count;
+                    if (unreadCount > 0) {
+                        $('.floating-chat-button .badge').text(unreadCount).show();
+                    } else {
+                        $('.floating-chat-button .badge').hide();
+                    }
+                }
+            });
+        }
+
+        $(document).ready(function() {
             var token = localStorage.getItem('api-token');
             if (token) {
                 $('meta[name="api-token"]').attr('content', token);
             }
 
-            function fetchChats(userId = null) {
-                var url = '/api/chats';
-                if (userId) {
-                    url += '?user_id=' + userId;
-                }
-                $.ajax({
-                    url: url,
-                    method: 'GET',
-                    headers: {
-                        'Authorization': 'Bearer ' + $('meta[name="api-token"]').attr('content')
-                    },
-                    success: function(data) {
-                        var chatBox = $('#chat-box');
-                        console.log(data);
-                        chatBox.empty();
-                        data.forEach(function(chat) {
-                            var bubbleClass = chat.sender_id == $('meta[name="user-id"]').attr(
-                                'content') ? 'sent' : 'received';
-                            var unreadBadge = chat.read_at ? '' :
-                                '<span class="badge badge-danger">New</span>';
-                            chatBox.append('<div class="chat-bubble ' + bubbleClass +
-                                '"><p><strong>' + chat.sender.name + ':</strong> ' + chat
-                                .message + unreadBadge + '</p></div>');
-                        });
-                        chatBox.scrollTop(chatBox[0].scrollHeight);
-                    }
-                });
-            }
+            $('#chat-window').hide();
+            // Show/hide chat window
+            $('.floating-chat-button').on('click', function() {
+                toggleChatWindow();
+                fetchChats($('#receiver_id').val());
+            });
 
-            // Fetch chats on page load
-            fetchChats();
-
-            // Submit chat form
             $('#chat-form').on('submit', function(e) {
                 e.preventDefault();
                 var formData = $(this).serialize();
@@ -211,12 +237,14 @@
                 });
             });
 
-            @if (Auth::user()->role == 'admin')
-                $('#receiver_id').on('change', function() {
-                    var selectedUser = $(this).val();
-                    fetchChats(selectedUser);
-                });
-            @endif
+            $('#receiver_id').on('change', function() {
+                fetchChats($(this).val());
+            });
+
+            setInterval(function() {
+                fetchChats($('#receiver_id').val());
+                fetchUnreadCount();
+            }, 2000); // Polling every 2 seconds
         });
     </script>
 </body>
