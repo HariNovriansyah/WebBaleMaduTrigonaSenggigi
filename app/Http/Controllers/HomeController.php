@@ -12,4 +12,9 @@ class HomeController extends Controller
         $blogs = Blog::with('author')->get();
         return view('user.home', compact('blogs'));
     }
+
+    public function guest(){
+        $blogs = Blog::with('author')->get();
+        return view('welcome', compact('blogs'));
+    }
 }
