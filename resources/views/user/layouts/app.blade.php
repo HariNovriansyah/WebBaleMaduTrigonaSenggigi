@@ -1,173 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Madu Trigona</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="user-id" content="{{ Auth::user()->id }}">
-    <meta name="user-role" content="{{ Auth::user()->role }}">
-    <meta name="api-token" content="">
-    @yield('style')
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Madu Trigona</title>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="user-id" content="{{ Auth::user()->id }}">
+        <meta name="user-role" content="{{ Auth::user()->role }}">
+        <meta name="api-token" content="">
 
-        .floating-chat-button {
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:slnt,wght@-10..0,100..900&display=swap" rel="stylesheet">
+
+        <!-- Icon Font Stylesheet -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link rel="stylesheet" href="{{ asset('assets/templates/lib/animate/animate.min.css') }}"/>
+        <link href="{{ asset('assets/templates/lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/templates/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="{{ asset('assets/templates/css/bootstrap.min.css') }}" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="{{ asset('assets/templates/css/style.css') }}" rel="stylesheet">
+
+        <style>
+            .floating-chat-button {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
+            background-color: #f8f9fa;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 15px;
             cursor: pointer;
-            font-size: 24px;
-        }
-
-        .floating-chat-button .badge {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background-color: red;
-            color: white;
-            border-radius: 50%;
-            padding: 3px 6px;
-            font-size: 12px;
+            z-index: 1000;
         }
 
         .chat-window {
             position: fixed;
-            bottom: 80px;
+            bottom: 20px;
             right: 20px;
-            width: 300px;
+            width: 350px;
             height: 500px;
-            border: 1px solid #ddd;
-            background-color: white;
+            background-color: #fff;
+            border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 999;
-            display: flex;
+            display: none;
             flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
         }
 
         .chat-header {
+            background-color: #343a40;
+            color: #fff;
             padding: 10px;
-            background-color: #007bff;
-            color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .chat-header .close-btn {
             cursor: pointer;
         }
 
         .chat-body {
+            flex: 1;
             padding: 10px;
-            height: calc(100% - 110px);
-            overflow-y: scroll;
+            overflow-y: auto;
+        }
+
+        .form-control{
+            margin-bottom: 10px;
         }
 
         .chat-footer {
             padding: 10px;
-            border-top: 1px solid #ddd;
-            margin-top: auto;
+            background-color: #f1f1f1;
         }
 
-        .chat-bubble {
-            border-radius: 10px;
-            padding: 10px;
-            margin-bottom: 10px;
-            width: fit-content;
-            max-width: 75%;
-            word-wrap: break-word;
-        }
+        @media (max-width: 600px) {
+            .chat-window {
+                width: 50%;
+                border-radius: 10px;
+                bottom: 20px;
+                right: 20px;
+                width: 350px;
+                height: 500px;
+            }
 
-        .chat-bubble.sent {
-            background-color: #dcf8c6;
-            align-self: flex-end;
-            margin-left: auto;
+            .chat-header {
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
         }
+        </style>
 
-        .chat-bubble.received {
-            background-color: #f1f0f0;
-            align-self: flex-start;
-            margin-right: auto;
-        }
-
-        .badge-danger {
-            background-color: #ff3860;
-            color: #fff;
-            border-radius: 5px;
-            padding: 2px 5px;
-            margin-left: 5px;
-        }
-
-        form {
-            margin-top: 20px;
-        }
-
-        select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        textarea {
-            width: 100%;
-            /* Atur lebar 100% agar mengisi parent element */
-            max-width: calc(100%);
-            /* Misalnya, batasi lebar maksimum dengan mengurangi margin atau padding jika ada */
-            padding: 10px;
-            min-height: 42px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            resize: vertical;
-            /* Hanya izinkan mengubah tinggi, bukan lebar */
-            box-sizing: border-box;
-        }
-
-        button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
 </head>
 
 <body>
+
     @include('user.layouts.navbar')
-    <div>
-        <main>
-            @yield('content')
-        </main>
-        @include('app.components.chat')
-    </div>
-    @include('user.layouts.footer')
-    @yield('script')
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+
+    @yield('content')
+
+    @include('app.components.chat')
+
+    {{-- <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a> --}}
+
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('assets/templates/lib/wow/wow.min.js') }}"></script>
+    <script src="{{ asset('assets/templates/lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('assets/templates/lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ asset('assets/templates/lib/counterup/counterup.min.js') }}"></script>
+    <script src="{{ asset('assets/templates/lib/lightbox/js/lightbox.min.js') }}"></script>
+    <script src="{{ asset('assets/templates/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+
+
+    <!-- Template Javascript -->
+    <script src="{{ asset('assets/templates/js/main.js') }}"></script>
+
+    <script src="{{ asset('assets/templates/js/bootstrap.min.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    @yield('script')
     <script>
         function toggleChatWindow() {
             $('#chat-window').toggle();
@@ -324,6 +287,7 @@
             }, 2000); // Polling every 2 seconds
         });
     </script>
+
 </body>
 
 </html>

@@ -55,7 +55,7 @@ class BlogController extends Controller
 
     public function all()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::with('author')->get();
         return view('admin.blogs.all', compact('blogs'));
     }
 

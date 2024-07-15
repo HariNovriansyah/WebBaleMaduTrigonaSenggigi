@@ -1,45 +1,51 @@
-
 @extends($layout)
 @section('content')
-<h1>Payment Successful!</h1>
-<p>Order ID: {{ $order->id }}</p>
-<p>Product: {{ $order->product->product_name }}</p>
-<p>Total Price: {{ $order->total_price }}</p>
+<div class="container mt-5">
+    <h1 class="mb-4">Payment Successful!</h1>
+    <p><strong>Order ID:</strong> {{ $order->id }}</p>
+    <p><strong>Product:</strong> {{ $order->product->product_name }}</p>
+    <p><strong>Total Price:</strong> Rp{{ number_format($order->total_price, 0, ',', '.') }}</p>
 
+    @php
+        $userHasReviewed = $order->product->reviews->contains('user_id', auth()->id());
+    @endphp
 
-@php
-    $userHasReviewed = $order->product->reviews->contains('user_id', auth()->id());
-@endphp
+    <!-- Button to download receipt as PDF -->
+    <a href="{{ route('order.receipt', $order->id) }}" class="btn btn-primary rounded-pill py-2 px-4 text-white mb-4">Download Receipt (PDF)</a>
 
-{{-- Tombol untuk mengunduh struk sebagai PDF --}}
-<a href="{{ route('order.receipt', $order->id) }}" class="btn btn-primary">Download Receipt (PDF)</a>
+    @if (!$userHasReviewed)
+        <!-- Form for rating and review -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3>Leave a Review</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ route('reviews.store') }}">
+                    @csrf
+                    <input type="hidden" name="product_id" value="{{ $order->product->id }}">
 
-@if (!$userHasReviewed)
-    <!-- Form for rating and review -->
-    <form method="POST" action="{{ route('reviews.store') }}">
-        @csrf
-        <input type="hidden" name="product_id" value="{{ $order->product->id }}">
+                    <div class="mb-3">
+                        <label for="rating" class="form-label">Rating:</label>
+                        <select name="rating" id="rating" class="form-select" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
 
-        <div>
-            <label for="rating">Rating:</label>
-            <select name="rating" id="rating" required>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
+                    <div class="mb-3">
+                        <label for="review" class="form-label">Review:</label>
+                        <textarea name="review" id="review" class="form-control" rows="4" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary rounded-pill py-2 px-4 text-white">Submit</button>
+                </form>
+            </div>
         </div>
-
-        <div>
-            <label for="review">Review:</label>
-            <textarea name="review" id="review" required></textarea>
-        </div>
-
-        <button type="submit">Submit</button>
-    </form>
-@else
-    <p>You have already reviewed this product.</p>
-@endif
-
+    @else
+        <div class="alert alert-info">You have already reviewed this product.</div>
+    @endif
+</div>
 @endsection
