@@ -1,23 +1,24 @@
 @extends($layout)
 @section('content')
 
-<h1>Create New Blog</h1>
+<div class="container p-5 bg-white rounded-4">
+    <h1 class="display-4 mb-4">Create New Blog</h1>
 
     <form action="{{ route('blogs.store') }}" method="POST">
         @csrf
-        <div>
-            <label for="title">Title</label>
-            <input type="text" id="title" name="title" required>
+        <div class="form-group">
+            <label for="title" class="col-form-label">Title</label>
+            <input type="text" id="title" name="title" class="form-control" required>
         </div>
-        <div>
-            <label for="content">Content</label>
-            <textarea id="content" name="content" rows="4" required></textarea>
+        <div class="form-group">
+            <label for="content" class="col-form-label">Content</label>
+            <textarea id="content" name="content" rows="4" class="form-control" required></textarea>
         </div>
-        <div>
+        <div class="d-flex justify-content-start">
             <button type="submit">Create Blog</button>
+            <a href="{{ route('blogs.index') }}" class="btn btn-link">Back to Blog Index</a>
         </div>
     </form>
-
-    <a href="{{ route('blogs.index') }}">Back to Blog Index</a>
+</div>
 
 @endsection

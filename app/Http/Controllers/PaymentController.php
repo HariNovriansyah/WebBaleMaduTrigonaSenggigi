@@ -56,13 +56,21 @@ class PaymentController extends Controller
 
             if ($transaction_status == 'capture' || $transaction_status == 'settlement') {
                 $order->status = 'approved';
+                $order->save();
+
+                return response()->json(['status' => 'success', 'message' => 'Transaction status updated']);
             } elseif ($transaction_status == 'deny' || $transaction_status == 'expire' || $transaction_status == 'cancel') {
                 $order->status = 'rejected';
+                $order->save();
+
+                return response()->json(['status' => 'failed', 'message' => 'Transaction status failed']);
+            }else{
+                $order->save();
+
+                return response()->json(['status' => 'failed', 'message' => 'Transaction status failed']);
             }
 
-            $order->save();
 
-            return response()->json(['status' => 'success', 'message' => 'Transaction status updated']);
         }
 
         return response()->json(['status' => 'error', 'message' => 'Invalid signature'], 400);

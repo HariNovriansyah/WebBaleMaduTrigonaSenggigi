@@ -1,10 +1,10 @@
 @extends($layout)
 @section('content')
 
-<div class="container pt-4 pb-4">
+<div class="container p-5 bg-white rounded-4">
     <h1 class="display-4 mb-4">Blogs</h1>
 
-    <a href="{{ route('blogs.create') }}" class="btn btn-primary mb-4">Create New Blog</a>
+    <a href="{{ route('blogs.create') }}" class="button mb-4">Create New Blog</a>
 
     @if ($blogs->isEmpty())
         <p class="text-muted">No blogs available.</p>

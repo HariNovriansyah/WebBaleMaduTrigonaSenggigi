@@ -11,18 +11,23 @@
     <meta name="user-role" content="{{ Auth::user()->role }}">
     <meta name="api-token" content="">
     @yield('style')
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
+        rel="stylesheet">
     <style>
         .sidebar {
-            top: 56px;
+            top: 72px;
             left: 0;
             width: 250px;
-            height: calc(100vh - 56px);
-            background-color: #f0f0f0;
+            height: calc(100vh - 72px);
             padding: 20px;
-            border-right: 1px solid #ddd;
             position: fixed;
             overflow-y: auto;
+            z-index: 1000;
         }
 
         .sidebar ul {
@@ -35,46 +40,109 @@
             margin-bottom: 10px;
         }
 
-        .sidebar a {
-            color: #ffc107;
+        .sidebar p {
+            color: #405d72;
+            font-weight: 700;
             text-decoration: none;
+            padding: 0.4rem;
+            border-radius: 0.8rem;
+
+        }
+
+        .sidebar a {
+            color: #474d53;
+            text-decoration: none;
+            padding: 0.4rem;
+            padding-left: 1rem;
+            border-radius: 0.8rem;
+
         }
 
         .sidebar a:hover {
-            color: #e38e20;
+            color: #1f2f3c;
+            background-color: #ff910044;
         }
 
         .sidebar .dropdown-toggle::after {
+            display: none;
+        }
+
+        /* Custom CSS for sidebar dropdowns */
+        .sidebar-dropdown {
+            position: relative;
+            /* Ensure dropdowns are positioned relative to parent */
+            display: none;
+            /* Hide dropdown by default */
+            margin-top: 0;
+            /* Remove any default margin that might cause gap */
+            border: none;
+            /* Remove any border */
+            box-shadow: none;
+            /* Remove any shadow */
+        }
+
+        /* Show the dropdown when the parent link is active/hovered */
+        .nav-item.dropdown:hover .sidebar-dropdown {
             display: block;
-            position: absolute;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-            font-size: 12px;
-            font-weight: bold;
-            content: "\f107";
-            font-family: "Font Awesome 5 Free";
+            /* Show dropdown on hover */
+            position: static;
+            /* Ensure dropdown stays within the flow of the document */
         }
 
         .sidebar .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            z-index: 1000;
-            display: none;
-            float: left;
-            min-width: 160px;
-            padding: .5rem 0;
-            margin: .125rem 0 0;
-            font-size: .875rem;
-            text-align: left;
-            list-style: none;
             background-color: #fff;
-            background-clip: padding-box;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: .25rem;
-            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+            /* Same background as sidebar */
+            border-radius: 0;
+            /* Adjust radius to fit design */
+            box-shadow: none;
+            /* Remove shadow */
+            padding: 0;
+            /* Adjust padding as needed */
         }
+
+        /* Custom CSS for sidebar dropdowns */
+        .sidebar .collapse {
+            background-color: #fff;
+            /* Same background as sidebar */
+            border-radius: 0;
+            /* Adjust radius to fit design */
+            box-shadow: none;
+            /* Remove shadow */
+            padding: 0.8rem;
+            /* Adjust padding as needed */
+            margin-left: 1rem;
+            /* Add left margin for nested items */
+        }
+
+        .sidebar .nav-link {
+            color: #474d53;
+            /* Adjust text color */
+            font-weight: 500;
+            /* Make text bold */
+            display: flex;
+            /* Align items in flex */
+            justify-content: space-between;
+            /* Space between text and icon */
+        }
+
+        .sidebar .dropdown-item {
+            /* Adjust padding as needed */
+            color: #474d53;
+            /* Adjust text color */
+        }
+
+        .sidebar .dropdown-item li a {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .sidebar .nav-item .nav-link .bi {
+            font-size: 1rem;
+            /* Adjust icon size */
+            margin-left: auto;
+            /* Align icon to the right */
+        }
+
 
         .sidebar .dropdown-menu.show {
             display: block;
@@ -88,15 +156,16 @@
     </style>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 300;
+            background-color: lightgray;
         }
 
         .floating-chat-button {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #ffc107;
+            background-color: #ffbd67;
             color: white;
             border: none;
             border-radius: 50%;
@@ -128,20 +197,24 @@
             height: 500px;
             border: 1px solid #ddd;
             background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px #00000033;
             z-index: 999;
             display: flex;
             flex-direction: column;
+            border-radius: 0.8rem;
         }
 
         .chat-header {
             padding: .75rem 1.25rem;
+            font-weight: 500;
             margin-bottom: 0;
-            background-color: #ffc107;
-            color: white;
+            background-color: #ffbd67;
+            color: #30393d;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-top-right-radius: 0.8rem;
+            border-top-left-radius: 0.8rem;
         }
 
         .chat-header .close-btn {
@@ -213,23 +286,57 @@
             box-sizing: border-box;
         }
 
+        /* Custom button styles */
+        .button,
         button {
-            background-color: #ffc107;
-            color: #fff;
+            background-color: #ffbd67;
+            /* Custom background color */
+            color: #30393d;
+            /* Custom text color */
             border: none;
-            padding: .5rem 1rem;
+            /* Remove border */
+            padding: .375rem .75rem;
+            /* Adjust padding to match Bootstrap */
             border-radius: .25rem;
+            /* Border radius to match Bootstrap */
             cursor: pointer;
+            /* Pointer cursor on hover */
+            text-decoration: none;
+            /* Remove text decoration */
+            font-weight: 500;
+            /* Adjust font weight */
+            display: inline-block;
+            /* Ensure display is inline-block */
+            text-align: center;
+            /* Center text */
+            vertical-align: middle;
+            /* Align vertically in the middle */
+            line-height: 1.5;
+            /* Set line height */
         }
 
+        .button:hover,
         button:hover {
-            background-color: #e38e20;
+            background-color: #f0a440;
+            /* Change background color on hover */
+            text-decoration: none;
+            /* Ensure text decoration is none on hover */
+            color: #30393d;
+            /* Ensure text color remains the same on hover */
+        }
+
+        .button:focus,
+        button:focus {
+            outline: 0;
+            /* Remove outline on focus */
+            box-shadow: 0 0 0 .25rem rgba(255, 189, 103, .5);
+            /* Match Bootstrap focus shadow */
         }
     </style>
 </head>
 
 <body>
-  @include('admin.layouts.navbar')
+    @include('admin.layouts.navbar')
     <div>
         <main class="content">
             @yield('content')
@@ -237,11 +344,44 @@
         @include('app.components.chat')
     </div>
     @include('admin.layouts.footer')
-    @yield('script')
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    @yield('script')
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Ambil URL saat ini
+            var currentUrl = window.location.href;
+
+            // Dapatkan semua link di sidebar
+            var sidebarLinks = document.querySelectorAll('.sidebar .nav-link, .sidebar .dropdown-item');
+            var dropdownToggles = document.querySelectorAll('.sidebar .nav-link.dropdown-toggle');
+
+            // Loop melalui setiap link
+            sidebarLinks.forEach(function(link) {
+                // Jika href link adalah sama dengan URL saat ini
+                var routes = link.getAttribute('data-route').split(' ');
+                if (routes.includes(currentUrl)) {
+                    // Tambahkan background color
+                    link.style.backgroundColor = "#ff910065"; // Ganti dengan warna yang diinginkan
+
+                    // Jika link ini ada di dalam dropdown, buka dropdown
+                    var parentCollapse = link.closest('.collapse');
+                    if (parentCollapse) {
+                        parentCollapse.classList.add('show');
+                        link.style.backgroundColor = "#769cbb65";
+                        var dropdownToggle = parentCollapse.previousElementSibling;
+                        if (dropdownToggle && dropdownToggle.classList.contains('dropdown-toggle')) {
+                            dropdownToggle.style.backgroundColor =
+                                "#ff910065"; // Ganti dengan warna yang diinginkan
+                            dropdownToggle.setAttribute('aria-expanded', 'true');
+                        }
+                    }
+                }
+            });
+        });
+    </script>
     <script>
         function toggleChatWindow() {
             $('#chat-window').toggle();
