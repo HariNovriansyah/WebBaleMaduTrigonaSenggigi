@@ -9,6 +9,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AdminReportController;
 use App\Http\Controllers\Api\ChatController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -52,7 +53,8 @@ Route::middleware('auth')->group(function () {
 
     #user routes
     Route::middleware(['role:user'])->group(function () {
-        Route::view('home', 'user.home')->name('user.home');
+        // Route::view('home', 'user.home')->name('user.home');
+        Route::get('home', [HomeController::class, 'index'])->name('user.home');
         // order routes
         Route::get('/products/{product}/order', [OrderController::class, 'create'])->name('order.create');
         Route::post('/products/{product}/order', [OrderController::class, 'store'])->name('order.store');

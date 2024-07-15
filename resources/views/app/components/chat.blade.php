@@ -1,4 +1,6 @@
-<button class="floating-chat-button">💬<span class="badge" style="display: none;"></span></button>
+<i class="floating-chat-button">
+    <i class="fa fa-comment-dots text-secondary fa-2x"></i>
+</i>
 <div class="chat-window" id="chat-window">
     <div class="chat-header">
         <span>Chat</span>
@@ -18,7 +20,7 @@
                 </select>
             @endif
             <div class="form-group">
-                <textarea name="message" id="message" class="form-control" rows="2" placeholder="Type a message..."></textarea>
+                <textarea name="message" id="message" class="form-control" rows="9" placeholder="Type a message..."></textarea>
             </div>
             <button type="submit" class="btn btn-warning">Send</button>
         </form>

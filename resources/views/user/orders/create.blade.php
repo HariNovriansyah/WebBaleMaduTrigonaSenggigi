@@ -1,15 +1,20 @@
-
 @extends($layout)
 @section('content')
-<div class="container">
-    <h1>Order Product: {{ $product->product_name }}</h1>
-    <form action="{{ route('order.store', $product->id) }}" method="POST">
-        @csrf
-        <div>
-            <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" name="quantity" min="1" required>
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card" style="width: 40%;">
+        <div class="card-header">
+            <h1 class="h5">Order Product: {{ $product->product_name }}</h1>
         </div>
-        <button type="submit">Place Order</button>
-    </form>
+        <div class="card-body">
+            <form action="{{ route('order.store', $product->id) }}" method="POST">
+                @csrf
+                <div class="mb-3">
+                    <label for="quantity" class="form-label">Quantity:</label>
+                    <input type="number" id="quantity" name="quantity" class="form-control" min="1" required>
+                </div>
+                <button type="submit" class="btn btn-primary rounded-pill py-2 px-4 text-white">Place Order</button>
+            </form>
+        </div>
+    </div>
 </div>
 @endsection
