@@ -89,53 +89,53 @@
         <div class="container py-5">
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
                 <h4 class="text-primary">Our Features</h4>
-                <h1 class="display-4 mb-4">Madu Trigona untuk Masa Depan yang Sehat</h1>
-                <p class="mb-0">
+                <h1 class="display-4 mb-4">Insurance Provide you a Better Future</h1>
+                <p class="mb-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur adipisci facilis cupiditate recusandae aperiam temporibus corporis itaque quis facere, numquam, ad culpa deserunt sint dolorem autem obcaecati, ipsam mollitia hic.
                 </p>
             </div>
             <div class="row g-4">
                 <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="feature-item p-4 pt-0" style="height: 55vh">
+                    <div class="feature-item p-4 pt-0">
                         <div class="feature-icon p-4 mb-4">
-                            <i class="far fa-handshake fa-2x"></i>
+                            <i class="far fa-handshake fa-3x"></i>
                         </div>
-                        <h4 class="mb-4">100% Pure and Natural</h4>
-                        <p class="mb-4">Madu Trigona Senggigi dipanen langsung dari lebah kelulut yang hidup di lingkungan alami tanpa campuran bahan kimia. Kami menjamin kemurnian dan kualitas terbaik dalam setiap tetes madu.
+                        <h4 class="mb-4">Trusted Company</h4>
+                        <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea hic laborum odit pariatur...
                         </p>
-
+                        <a class="btn btn-primary rounded-pill py-2 px-4" href="#">Learn More</a>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="feature-item p-4 pt-0" style="height: 55vh">
+                    <div class="feature-item p-4 pt-0">
                         <div class="feature-icon p-4 mb-4">
-                            <i class="fa fa-dollar-sign fa-2x"></i>
+                            <i class="fa fa-dollar-sign fa-3x"></i>
                         </div>
-                        <h4 class="mb-4">Rich in Nutrients</h4>
-                        <p class="mb-4">Dikenal dengan kandungan nutrisi yang tinggi, Madu Trigona Senggigi mengandung berbagai vitamin, mineral, enzim, dan antioksidan yang bermanfaat untuk kesehatan jasmani tubuh Anda.
+                        <h4 class="mb-4">Anytime Money</h4>
+                        <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea hic laborum odit pariatur...
                         </p>
-
+                        <a class="btn btn-primary rounded-pill py-2 px-4" href="#">Learn More</a>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.6s">
-                    <div class="feature-item p-4 pt-0" style="height: 55vh">
+                    <div class="feature-item p-4 pt-0">
                         <div class="feature-icon p-4 mb-4">
-                            <i class="fa fa-bullseye fa-2x"></i>
+                            <i class="fa fa-bullseye fa-3x"></i>
                         </div>
-                        <h4 class="mb-4">Health Benefits</h4>
-                        <p class="mb-4">Madu Trigona Senggigi menawarkan berbagai manfaat kesehatan, termasuk meningkatkan sistem kekebalan tubuh, mendukung kesehatan pencernaan, serta membantu dalam penyembuhan luka dan peradangan.
+                        <h4 class="mb-4">Flexible Plans</h4>
+                        <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea hic laborum odit pariatur...
                         </p>
-
+                        <a class="btn btn-primary rounded-pill py-2 px-4" href="#">Learn More</a>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.8s">
-                    <div class="feature-item p-4 pt-0" style="height: 55vh">
+                    <div class="feature-item p-4 pt-0">
                         <div class="feature-icon p-4 mb-4">
-                            <i class="fa fa-headphones fa-2x"></i>
+                            <i class="fa fa-headphones fa-3x"></i>
                         </div>
-                        <h4 class="mb-4">Trusted Quality</h4>
-                        <p class="mb-4">Dengan proses produksi yang ketat dan standar kualitas tinggi, Madu Trigona Senggigi memberikan Anda produk yang dapat dipercaya untuk konsumsi harian dan kesehatan keluarga.
+                        <h4 class="mb-4">24/7 Fast Support</h4>
+                        <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea hic laborum odit pariatur...
                         </p>
-
+                        <a class="btn btn-primary rounded-pill py-2 px-4" href="#">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -143,29 +143,99 @@
     </div>
     <!-- Feature End -->
 
+    <!-- About Start -->
+    {{-- <div class="container-fluid bg-light about pb-5">
+        <div class="container pb-5">
+            <div class="row g-5">
+                <div class="col-xl-6 wow fadeInLeft" data-wow-delay="0.2s">
+                    <div class="about-item-content bg-white rounded p-5 h-100">
+                        <h4 class="text-primary">About Our Company</h4>
+                        <h1 class="display-4 mb-4">High Range of Exploring Protection</h1>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt debitis sint tempora. Corporis consequatur illo blanditiis voluptates aperiam quos aliquam totam aliquid rem explicabo,
+                        </p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae praesentium recusandae eligendi modi hic
+                        </p>
+                        <p class="text-dark"><i class="fa fa-check text-primary me-3"></i>We can save your money.</p>
+                        <p class="text-dark"><i class="fa fa-check text-primary me-3"></i>Production or trading of good</p>
+                        <p class="text-dark mb-4"><i class="fa fa-check text-primary me-3"></i>Our life insurance is flexible</p>
+                        <a class="btn btn-primary rounded-pill py-3 px-5" href="#">More Information</a>
+                    </div>
+                </div>
+                <div class="col-xl-6 wow fadeInRight" data-wow-delay="0.2s">
+                    <div class="bg-white rounded p-5 h-100">
+                        <div class="row g-4 justify-content-center">
+                            <div class="col-12">
+                                <div class="rounded bg-light">
+                                    <img src="img/about-1.png" class="img-fluid rounded w-100" alt="">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="counter-item bg-light rounded p-3 h-100">
+                                    <div class="counter-counting">
+                                        <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">129</span>
+                                        <span class="h1 fw-bold text-primary">+</span>
+                                    </div>
+                                    <h4 class="mb-0 text-dark">Insurance Policies</h4>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="counter-item bg-light rounded p-3 h-100">
+                                    <div class="counter-counting">
+                                        <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">99</span>
+                                        <span class="h1 fw-bold text-primary">+</span>
+                                    </div>
+                                    <h4 class="mb-0 text-dark">Awards WON</h4>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="counter-item bg-light rounded p-3 h-100">
+                                    <div class="counter-counting">
+                                        <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">556</span>
+                                        <span class="h1 fw-bold text-primary">+</span>
+                                    </div>
+                                    <h4 class="mb-0 text-dark">Skilled Agents</h4>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="counter-item bg-light rounded p-3 h-100">
+                                    <div class="counter-counting">
+                                        <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">967</span>
+                                        <span class="h1 fw-bold text-primary">+</span>
+                                    </div>
+                                    <h4 class="mb-0 text-dark">Team Members</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> --}}
+    <!-- About End -->
 
     <!-- Service Start -->
     <div class="container-fluid service py-5">
         <div class="container py-5">
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
                 <h4 class="text-primary">Our Services</h4>
-                <h1 class="display-4 mb-4">Madu Trigona Senggigi</h1>
-                <p class="mb-0">Aplikasi Madu Trigona Senggigi menawarkan berbagai layanan untuk mendukung kesehatan dan kesejahteraan Anda. Temukan keunggulan dari produk kami yang berkualitas tinggi dan alami.</p>
+                <h1 class="display-4 mb-4">We Provide Best Services</h1>
+                <p class="mb-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur adipisci facilis cupiditate recusandae aperiam temporibus corporis itaque quis facere, numquam, ad culpa deserunt sint dolorem autem obcaecati, ipsam mollitia hic.
+                </p>
             </div>
             <div class="row g-4 justify-content-center">
                 <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
                     <div class="service-item">
                         <div class="service-img">
-                            <img src="{{asset('assets/templates/img/blog-1.png') }}" class="img-fluid rounded-top w-100" alt="Pure and Natural Honey">
+                            <img src="{{asset('assets/templates/img/blog-1.png') }}" class="img-fluid rounded-top w-100" alt="">
                             <div class="service-icon p-3">
-                                <i class="fa fa-leaf fa-2x"></i>
+                                <i class="fa fa-users fa-2x"></i>
                             </div>
                         </div>
                         <div class="service-content p-4">
                             <div class="service-content-inner">
-                                <a href="#" class="d-inline-block h4 mb-4">100% Pure and Natural</a>
-                                <p class="mb-4">Nikmati madu murni yang dipanen langsung dari lebah kelulut tanpa bahan kimia atau aditif.</p>
-                                <a class="btn btn-primary rounded-pill py-2 px-4" href="#">Pelajari Lebih Lanjut</a>
+                                <a href="#" class="d-inline-block h4 mb-4">Life Insurance</a>
+                                <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, eum!</p>
+                                <a class="btn btn-primary rounded-pill py-2 px-4" href="#">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -173,16 +243,16 @@
                 <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.4s">
                     <div class="service-item">
                         <div class="service-img">
-                            <img src="{{asset('assets/templates/img/blog-2.png') }}" class="img-fluid rounded-top w-100" alt="Rich in Nutrients">
+                            <img src="{{asset('assets/templates/img/blog-2.png') }}" class="img-fluid rounded-top w-100" alt="">
                             <div class="service-icon p-3">
-                                <i class="fa fa-apple-alt fa-2x"></i>
+                                <i class="fa fa-hospital fa-2x"></i>
                             </div>
                         </div>
                         <div class="service-content p-4">
                             <div class="service-content-inner">
-                                <a href="#" class="d-inline-block h4 mb-4">Kaya Nutrisi</a>
-                                <p class="mb-4">Mengandung vitamin, mineral, enzim, dan antioksidan yang bermanfaat untuk kesehatan tubuh Anda.</p>
-                                <a class="btn btn-primary rounded-pill py-2 px-4" href="#">Pelajari Lebih Lanjut</a>
+                                <a href="#" class="d-inline-block h4 mb-4">Health Insurance</a>
+                                <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, eum!</p>
+                                <a class="btn btn-primary rounded-pill py-2 px-4" href="#">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -190,16 +260,16 @@
                 <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.6s">
                     <div class="service-item">
                         <div class="service-img">
-                            <img src="{{asset('assets/templates/img/blog-3.png') }}" class="img-fluid rounded-top w-100" alt="Health Benefits">
+                            <img src="{{asset('assets/templates/img/blog-3.png') }}" class="img-fluid rounded-top w-100" alt="">
                             <div class="service-icon p-3">
-                                <i class="fa fa-heart fa-2x"></i>
+                                <i class="fa fa-car fa-2x"></i>
                             </div>
                         </div>
                         <div class="service-content p-4">
                             <div class="service-content-inner">
-                                <a href="#" class="d-inline-block h4 mb-4">Manfaat Kesehatan</a>
-                                <p class="mb-4">Meningkatkan sistem kekebalan tubuh, mendukung kesehatan pencernaan, dan membantu penyembuhan luka.</p>
-                                <a class="btn btn-primary rounded-pill py-2 px-4" href="#">Pelajari Lebih Lanjut</a>
+                                <a href="#" class="d-inline-block h4 mb-4">Car Insurance</a>
+                                <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, eum!</p>
+                                <a class="btn btn-primary rounded-pill py-2 px-4" href="#">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -207,20 +277,23 @@
                 <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.8s">
                     <div class="service-item">
                         <div class="service-img">
-                            <img src="{{asset('assets/templates/img/blog-4.png') }}" class="img-fluid rounded-top w-100" alt="Trusted Quality">
+                            <img src="{{asset('assets/templates/img/blog-4.png') }}" class="img-fluid rounded-top w-100" alt="">
                             <div class="service-icon p-3">
-                                <i class="fa fa-check fa-2x"></i>
+                                <i class="fa fa-home fa-2x"></i>
                             </div>
                         </div>
                         <div class="service-content p-4">
                             <div class="service-content-inner">
-                                <a href="#" class="d-inline-block h4 mb-4">Kualitas Terpercaya</a>
-                                <p class="mb-4">Diproduksi dengan standar kualitas tinggi dan proses ketat untuk memastikan kepercayaan Anda.</p>
-                                <a class="btn btn-primary rounded-pill py-2 px-4" href="#">Pelajari Lebih Lanjut</a>
+                                <a href="#" class="d-inline-block h4 mb-4">Home Insurance</a>
+                                <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, eum!</p>
+                                <a class="btn btn-primary rounded-pill py-2 px-4" href="#">Read More</a>
                             </div>
                         </div>
                     </div>
                 </div>
+                {{-- <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
+                    <a class="btn btn-primary rounded-pill py-3 px-5" href="#">More Services</a>
+                </div> --}}
             </div>
         </div>
     </div>
@@ -234,7 +307,7 @@
                     <div class="h-100">
                         <div class="mb-5">
                             <h4 class="text-primary">Some Important FAQ's</h4>
-                            <h1 class="display-4 mb-0">Pertanyaan Umum Seputar Madu Trigona</h1>
+                            <h1 class="display-4 mb-0">Common Frequently Asked Questions</h1>
                         </div>
                         <div class="accordion" id="accordionExample">
                             <div class="accordion-item">
@@ -290,7 +363,7 @@
                 <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
                     <h4 class="text-primary">From Blog</h4>
                     <h1 class="display-4 mb-4">News And Updates</h1>
-                    <p class="mb-0">update berita seputar masalah kesehatan dan sebagainya.
+                    <p class="mb-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur adipisci facilis cupiditate recusandae aperiam temporibus corporis itaque quis facere, numquam, ad culpa deserunt sint dolorem autem obcaecati, ipsam mollitia hic.
                     </p>
                 </div>
 
