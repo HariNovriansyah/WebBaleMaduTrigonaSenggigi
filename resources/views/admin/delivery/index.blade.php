@@ -1,7 +1,7 @@
 @extends($layout)
 
 @section('content')
-<div class="container">
+<div class="container p-5 bg-white rounded-4">
     <h1>Manage Deliveries</h1>
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>

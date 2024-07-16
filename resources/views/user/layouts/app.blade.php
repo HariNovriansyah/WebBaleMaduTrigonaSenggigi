@@ -32,22 +32,21 @@
         <link href="{{ asset('assets/templates/css/style.css') }}" rel="stylesheet">
 
         <style>
-           .floating-chat-button {
+         .floating-chat-button {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 2.5rem;
+            right: 2.5rem;
             background-color: #ffbd67;
             color: white;
             border: none;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 72px;
+            height: 72px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 24px;
-            z-index: 1000;
+            font-size: 36px;
         }
 
         .floating-chat-button .badge {
@@ -65,13 +64,13 @@
         .chat-window {
             position: fixed;
             bottom: 80px;
-            right: 20px;
+            right: 7.5rem;
             width: 300px;
             height: 500px;
             border: 1px solid #ddd;
             background-color: white;
             box-shadow: 0 4px 8px #00000033;
-            z-index: 1030;
+            z-index: 999;
             display: flex;
             flex-direction: column;
             border-radius: 0.8rem;

@@ -158,24 +158,24 @@
         body {
             font-family: "Montserrat", sans-serif;
             font-weight: 300;
-            background-color: lightgray;
+            background-color: rgb(223, 226, 234);
         }
 
         .floating-chat-button {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 2.5rem;
+            right: 2.5rem;
             background-color: #ffbd67;
             color: white;
             border: none;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 72px;
+            height: 72px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 24px;
+            font-size: 36px;
         }
 
         .floating-chat-button .badge {
@@ -192,7 +192,7 @@
         .chat-window {
             position: fixed;
             bottom: 80px;
-            right: 20px;
+            right: 7.5rem;
             width: 300px;
             height: 500px;
             border: 1px solid #ddd;

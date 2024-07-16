@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('author_id');
             $table->string('title');
             $table->text('content');
+            $table->json('images')->nullable();
+            $table->string('video')->nullable();
             $table->timestamps();
 
             // Add the foreign key constraint

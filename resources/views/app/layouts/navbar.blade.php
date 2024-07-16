@@ -51,8 +51,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <a href="#" class="navbar-brand p-0">
-                        <h1 class="text-primary mb-0"><i class="fab fa-slack me-2"></i></h1>
-                        {{-- <img src="img/logo.png" alt="Logo"> --}}
+                        <img src="{{ asset('assets/img/logo.jpg') }}" style="border-radius: 100%" alt="Logo">
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                         <span class="fa fa-bars"></span>
