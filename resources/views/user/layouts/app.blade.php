@@ -47,6 +47,7 @@
             justify-content: center;
             cursor: pointer;
             font-size: 36px;
+            z-index: 1030;
         }
 
         .floating-chat-button .badge {
@@ -198,13 +199,6 @@
             /* Ensure text color remains the same on hover */
         }
 
-        .button:focus,
-        button:focus {
-            outline: 0;
-            /* Remove outline on focus */
-            box-shadow: 0 0 0 .25rem rgba(255, 189, 103, .5);
-            /* Match Bootstrap focus shadow */
-        }
         </style>
 
 </head>

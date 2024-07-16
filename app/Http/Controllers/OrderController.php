@@ -17,20 +17,23 @@ class OrderController extends Controller
 
     public function store(Request $request, Product $product)
     {
-        $request->validate([
-            'quantity' => 'required|integer|min:1',
-        ]);
+        if ($product->stock>0) {
+            $request->validate([
+                'quantity' => 'required|integer|min:1',
+            ]);
 
-        $totalPrice = $product->price * $request->input('quantity');
+            $totalPrice = $product->price * $request->input('quantity');
 
-        $order = new Order;
-        $order->user_id = auth()->id();
-        $order->product_id = $product->id;
-        $order->total_price = $totalPrice;
-        $order->quantity = $request->input('quantity'); //new code
-        $order->status = 'pending';
-        $order->save();
-        return redirect()->route('payment.show', $order->id);
+            $order = new Order;
+            $order->user_id = auth()->id();
+            $order->product_id = $product->id;
+            $order->total_price = $totalPrice;
+            $order->quantity = $request->input('quantity'); //new code
+            $order->status = 'pending';
+            $order->save();
+            return redirect()->route('payment.show', $order->id);
+        }
+        return redirect()->back()->with('error', 'The Product out of stock');
     }
 
     public function orderHistory()
