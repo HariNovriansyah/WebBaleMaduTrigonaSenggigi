@@ -9,6 +9,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AdminReportController;
 use App\Http\Controllers\Api\ChatController;
+use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,6 +53,11 @@ Route::middleware('auth')->group(function () {
         #Admin Report
         Route::get('/admin/reports/orders', [AdminReportController::class, 'index'])->name('admin.reports.orders');
         Route::get('/admin/reports/orders/download', [AdminReportController::class, 'downloadPdf'])->name('admin.reports.orders.download');
+
+        #Delivery
+        Route::get('/delivery', [DeliveryController::class, 'index'])->name('delivery.index');
+        Route::post('/delivery/{order}/deliver', [DeliveryController::class, 'deliverOrder'])->name('delivery.deliverOrder');
+        Route::post('/delivery/{order}/complete', [DeliveryController::class, 'completeOrder'])->name('delivery.completeOrder');
     });
 
     #user routes
@@ -75,9 +81,15 @@ Route::middleware('auth')->group(function () {
 
         //Review and Rating routes
         Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+        Route::get('/orders/{order}/review', [OrderController::class, 'showReviewForm'])->name('payment.review');
+        Route::get('/reviews/{review}/edit', [ReviewController::class, 'edit'])->name('reviews.edit');
+        Route::post('/reviews/{review}', [ReviewController::class, 'update'])->name('reviews.update');
 
         //Cetak PDF
         Route::get('/order/{order}/receipt', [OrderController::class, 'generateReceipt'])->name('order.receipt');
+
+        //Received Product
+        Route::post('/orders/{order}/received', [OrderController::class, 'markAsReceived'])->name('orders.received');
 
     });
 

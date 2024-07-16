@@ -16,7 +16,7 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a></li>
                         <li>  <form method="POST" action="{{ route('logout') }}">
-                            @csrf<a class="dropdown-item" href="{{ route('logout') }}"
+                            @csrf<a class="dropdown-item"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Log Out') }}
@@ -55,6 +55,15 @@
             <ul class="collapse list-unstyled" id="productsDropdown">
                 <li><a class="dropdown-item" href="{{ route('products.index') }}" data-route="{{ route('products.index') }}">View Products</a></li>
                 <li><a class="dropdown-item" href="{{ route('products.create') }}" data-route="{{ route('products.create') }}">Create Product</a></li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownDelivery" role="button" data-bs-toggle="collapse"
+                data-bs-target="#deliveryDropdown" aria-expanded="false" aria-controls="deliveryDropdown" data-route="{{ route('delivery.index') }} ">
+                Delivery <i class="bi bi-chevron-down"></i>
+            </a>
+            <ul class="collapse list-unstyled" id="deliveryDropdown">
+                <li><a class="dropdown-item" href="{{ route('delivery.index') }}" data-route="{{ route('delivery.index') }}">Manage Deliveries</a></li>
             </ul>
         </li>
         <li class="nav-item">

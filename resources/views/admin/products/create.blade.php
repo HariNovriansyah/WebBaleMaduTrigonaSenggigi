@@ -29,7 +29,7 @@
                 <div id="preview" class="d-flex flex-wrap"></div>
             </div>
             <div class="d-flex justify-content-start">
-                <button type="submit" class="btn btn-primary">Create Product</button>
+                <button type="submit">Create Product</button>
                 <a href="{{ route('products.index') }}" class="btn btn-link">Back to Product Index</a>
             </div>
         </form>
