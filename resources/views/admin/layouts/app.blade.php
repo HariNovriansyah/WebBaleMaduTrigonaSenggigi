@@ -440,7 +440,7 @@
                         var totalUnreadCount = 0;
                         $.each(data, function(userId, count) {
                             totalUnreadCount += count;
-                            var userOption = $('#option' + userId);
+                            var userOption = $('.dropdown-item[data-user-id="' + userId + '"]');
                             if (count > 0) {
                                 userOption.find('.badge').text(count).show();
                             } else {
@@ -479,7 +479,6 @@
                 }
             });
         }
-
         $(document).ready(function() {
             var token = localStorage.getItem('api-token');
             if (token) {
@@ -510,6 +509,16 @@
                 }
             });
 
+
+            var selectedUserId = null;
+            $('.dropdown-item').on('click', function(e) {
+                e.preventDefault(); // Prevent the default link behavior
+                var userId = $(this).data('user-id');
+                selectedUserId = userId;
+                fetchChats(userId);
+                markAsRead(userId);
+                $('#dropdownMenuButton').text($(this).data('user-name')); // Update the button text to the selected user
+            });
             $('#chat-form').on('submit', function(e) {
                 e.preventDefault();
                 var formData = $(this).serialize();
@@ -522,19 +531,17 @@
                         'Authorization': 'Bearer ' + $('meta[name="api-token"]').attr('content')
                     },
                     success: function(response) {
-                        fetchChats($('#receiver_id').val());
+                        fetchChats(selectedUserId);
                         $('#message').val('');
                     }
                 });
             });
-
-            $('#receiver_id').on('change', function() {
-                fetchChats($(this).val());
-                markAsRead($(this).val());
-            });
-
+            // Polling function
             setInterval(function() {
-                fetchChats($('#receiver_id').val());
+                if (selectedUserId !== null) {
+                    fetchChats(selectedUserId);
+
+                }
                 fetchUnreadCount();
             }, 2000); // Polling every 2 seconds
         });
