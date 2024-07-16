@@ -32,72 +32,179 @@
         <link href="{{ asset('assets/templates/css/style.css') }}" rel="stylesheet">
 
         <style>
-            .floating-chat-button {
+           .floating-chat-button {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #f8f9fa;
+            background-color: #ffbd67;
+            color: white;
+            border: none;
             border-radius: 50%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            padding: 15px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
+            font-size: 24px;
             z-index: 1000;
+        }
+
+        .floating-chat-button .badge {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #dc3545;
+            color: white;
+            border-radius: 50%;
+            padding: 3px 6px;
+            font-size: 12px;
+            z-index: 1030;
         }
 
         .chat-window {
             position: fixed;
-            bottom: 20px;
+            bottom: 80px;
             right: 20px;
-            width: 350px;
+            width: 300px;
             height: 500px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            display: none;
+            border: 1px solid #ddd;
+            background-color: white;
+            box-shadow: 0 4px 8px #00000033;
+            z-index: 1030;
+            display: flex;
             flex-direction: column;
-            overflow: hidden;
-            z-index: 1000;
+            border-radius: 0.8rem;
         }
 
         .chat-header {
-            background-color: #343a40;
-            color: #fff;
-            padding: 10px;
+            padding: .75rem 1.25rem;
+            font-weight: 500;
+            margin-bottom: 0;
+            background-color: #ffbd67;
+            color: #30393d;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-top-right-radius: 0.8rem;
+            border-top-left-radius: 0.8rem;
+        }
+
+        .chat-header .close-btn {
             cursor: pointer;
         }
 
         .chat-body {
-            flex: 1;
-            padding: 10px;
+            flex: 1 1 auto;
+            padding: 1rem;
             overflow-y: auto;
         }
 
-        .form-control{
-            margin-bottom: 10px;
-        }
-
         .chat-footer {
-            padding: 10px;
-            background-color: #f1f1f1;
+            padding: .75rem 1.25rem;
+            border-top: 1px solid #ddd;
+            margin-top: auto;
         }
 
-        @media (max-width: 600px) {
-            .chat-window {
-                width: 50%;
-                border-radius: 10px;
-                bottom: 20px;
-                right: 20px;
-                width: 350px;
-                height: 500px;
-            }
+        .chat-bubble {
+            border-radius: .25rem;
+            padding: .5rem 1rem;
+            margin-bottom: 1rem;
+            width: fit-content;
+            max-width: 75%;
+            word-wrap: break-word;
+            color: #30393d;
+        }
 
-            .chat-header {
-                border-top-left-radius: 0;
-                border-top-right-radius: 0;
-            }
+        .chat-bubble.sent {
+            background-color: #ffecb5;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+
+        .chat-bubble.received {
+            background-color: #e9ecef;
+            align-self: flex-start;
+            margin-right: auto;
+        }
+
+        .badge-danger {
+            background-color: #dc3545;
+            color: #fff;
+            border-radius: .25rem;
+            padding: .25rem .5rem;
+            margin-left: .5rem;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        select {
+            width: 100%;
+            padding: .5rem .75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+        }
+
+        textarea {
+            width: 100%;
+            max-width: 100%;
+            padding: .5rem .75rem;
+            min-height: 42px;
+            margin-bottom: 1rem;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+
+        /* Custom button styles */
+        .button,
+        button {
+            background-color: #ffbd67;
+            /* Custom background color */
+            color: #30393d;
+            /* Custom text color */
+            border: none;
+            /* Remove border */
+            padding: .375rem .75rem;
+            /* Adjust padding to match Bootstrap */
+            border-radius: .25rem;
+            /* Border radius to match Bootstrap */
+            cursor: pointer;
+            /* Pointer cursor on hover */
+            text-decoration: none;
+            /* Remove text decoration */
+            font-weight: 500;
+            /* Adjust font weight */
+            display: inline-block;
+            /* Ensure display is inline-block */
+            text-align: center;
+            /* Center text */
+            vertical-align: middle;
+            /* Align vertically in the middle */
+            line-height: 1.5;
+            /* Set line height */
+        }
+
+        .button:hover,
+        button:hover {
+            background-color: #f0a440;
+            /* Change background color on hover */
+            text-decoration: none;
+            /* Ensure text decoration is none on hover */
+            color: #30393d;
+            /* Ensure text color remains the same on hover */
+        }
+
+        .button:focus,
+        button:focus {
+            outline: 0;
+            /* Remove outline on focus */
+            box-shadow: 0 0 0 .25rem rgba(255, 189, 103, .5);
+            /* Match Bootstrap focus shadow */
         }
         </style>
 
@@ -284,7 +391,7 @@
             setInterval(function() {
                 fetchChats($('#receiver_id').val());
                 fetchUnreadCount();
-            }, 2000); // Polling every 2 seconds
+            }, 2000); // Polling every 5 seconds
         });
     </script>
 

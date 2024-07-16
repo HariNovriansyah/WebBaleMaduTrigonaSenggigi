@@ -367,6 +367,8 @@
                     </p>
                 </div>
 
+   @if ($blogs->isNotEmpty())
+
 
                 <div class="row g-4 justify-content-center">
 
@@ -395,6 +397,7 @@
 
                     @endforeach
                 </div>
+                @endif
             </div>
         </div>
         <!-- Blog End -->
