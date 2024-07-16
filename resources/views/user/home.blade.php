@@ -314,7 +314,7 @@
                                     <div class="small"><span class="fa fa-comment-alt text-primary"></span> 6 Comments</div>
                                 </div>
                                 <a href="#" class="h4 d-inline-block mb-3">{{ $blog->title }}</a>
-                                <p class="mb-3">{{ Str::limit($blog->content, 100) }}</p>
+                                <p class="mb-3">{{ $blog->content }}</p>
                                 <a href="{{ route('blogs.show', ['blog' => $blog->id]) }}" class="btn btn-primary text-white rounded-pill py-2 px-4">Read More <i class="fa fa-arrow-right"></i></a>
                             </div>
                         </div>
