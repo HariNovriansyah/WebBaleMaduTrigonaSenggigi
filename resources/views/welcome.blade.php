@@ -37,9 +37,9 @@
                     <div class="row g-4 align-items-center">
                         <div class="col-lg-7 animated fadeInLeft">
                             <div class="text-sm-center text-md-start">
-                                <h4 class="text-white text-uppercase fw-bold mb-4">Welcome Madu Trigona</h4>
-                                <h1 class="display-1 text-white mb-4">Life Insurance Makes You Happy</h1>
-                                <p class="mb-5 fs-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy...
+                                <h4 class="text-white text-uppercase fw-bold mb-4">Selamat Datang di website MARILAGI</h4>
+                                <h1 class="display-1 text-white mb-4">Mari Mulai Hidup Sehat</h1>
+                                <p class="mb-5 fs-5">Karena Madu Trigona, yang dihasilkan oleh lebah kelulut tanpa sengat, menawarkan beragam manfaat kesehatan yang luar biasa.
                                 </p>
                                 <div class="d-flex justify-content-center justify-content-md-start flex-shrink-0 mb-4">
                                     <a class="btn btn-light rounded-pill py-3 px-4 px-md-5 me-2" href="#"><i class="fas fa-play-circle me-2"></i> Watch Video</a>
@@ -67,9 +67,9 @@
                         </div>
                         <div class="col-lg-7 animated fadeInRight">
                             <div class="text-sm-center text-md-end">
-                                <h4 class="text-white text-uppercase fw-bold mb-4">Welcome Madu Trigona</h4>
-                                <h1 class="display-1 text-white mb-4">Life Insurance Makes You Happy</h1>
-                                <p class="mb-5 fs-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy...
+                                <h4 class="text-white text-uppercase fw-bold mb-4">Selamat Datang di website MARILAGI</h4>
+                                <h1 class="display-1 text-white mb-4">Sehat Membuat Anda Bahagia</h1>
+                                <p class="mb-5 fs-5">Yuk, jadikan madu Trigona sebagai bagian dari pola hidup sehat Anda dan rasakan manfaatnya setiap hari!
                                 </p>
                                 <div class="d-flex justify-content-center justify-content-md-end flex-shrink-0 mb-4">
                                     <a class="btn btn-light rounded-pill py-3 px-4 px-md-5 me-2" href="#"><i class="fas fa-play-circle me-2"></i> Watch Video</a>
