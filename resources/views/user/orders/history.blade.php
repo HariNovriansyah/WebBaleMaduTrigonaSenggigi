@@ -11,6 +11,17 @@
 
 <div class="container mt-5">
     <h1 class="mb-4">Riwayat Pemesanan</h1>
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="table-responsive">
         <table class="table table-striped table-hover">
             <thead class="thead-dark">
@@ -32,6 +43,18 @@
                         <td>
                             @if ($order->status == 'approved')
                                 <a href="{{ route('payment.success', $order->id) }}" class="btn btn-success btn-sm">{{ ucfirst($order->status) }}</a>
+                            @elseif($order->status == 'delivered')
+                            <form action="{{ route('orders.received', $order->id) }}" method="POST" style="display:inline-block;">
+                                @csrf
+                                <button type="submit" class="btn btn-success">Received</button>
+                            </form>
+                            @elseif($order->status == 'received')
+                            <a href="{{ route('payment.success', $order->id) }}" class="btn btn-success btn-sm">{{ ucfirst($order->status) }}</a>
+                            @if ($review)
+                            <a href="{{ route('reviews.edit', $review->id) }}" class="btn btn-warning btn-sm">Edit Review</a>
+                            @else
+                            <a href="{{ route('payment.review', $order->id) }}" class="btn btn-warning btn-sm">Review</a>
+                            @endif
                             @else
                                 <a href="{{ route('payment.pending', $order->id) }}" class="btn btn-warning btn-sm">{{ ucfirst($order->status) }}</a>
                             @endif
