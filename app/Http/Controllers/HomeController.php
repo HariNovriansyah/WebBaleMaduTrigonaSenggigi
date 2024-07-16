@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Blog;
-use App\Models\Product;
 
 
 class HomeController extends Controller
@@ -18,5 +17,4 @@ class HomeController extends Controller
         $blogs = Blog::with('author')->get();
         return view('welcome', compact('blogs'));
     }
-
 }

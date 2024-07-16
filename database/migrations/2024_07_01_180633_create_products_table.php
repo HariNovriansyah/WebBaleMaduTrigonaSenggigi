@@ -17,7 +17,6 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->decimal('price', 8, 2);
             $table->integer('stock');
-            $table->json('images')->nullable(); // Kolom untuk menyimpan array gambar
             $table->timestamps();
         });
     }

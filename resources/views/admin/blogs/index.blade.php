@@ -12,7 +12,7 @@
         @foreach ($blogs as $blog)
             <hr class="my-4">
             <h2 class="mb-2">{{ $blog->title }}</h2>
-            <p class="mb-2">{{ Str::limit($blog->content, 200) }}</p>
+            <p class="mb-2">{{ Str::limit($blog->content, 100) }}</p>
             <p class="mb-2">Written by: {{ $blog->author->name }}</p>
             <p class="mb-2">Published on: {{ $blog->created_at->format('d M Y') }}</p>
             <div class="mb-4">

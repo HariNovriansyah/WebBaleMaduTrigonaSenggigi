@@ -77,16 +77,3 @@
         </li>
     </ul>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.nav-link, .dropdown-item').forEach(function(element) {
-        element.addEventListener('click', function(event) {
-            if (this.href) {
-                window.location.href = this.href;
-            }
-        });
-    });
-});
-
-</script>

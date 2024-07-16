@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -35,24 +34,9 @@ class ProductController extends Controller
             'description' => 'nullable|string',
             'price' => 'required|numeric',
             'stock' => 'required|integer',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg', // Validasi gambar
         ]);
-        $images = [];
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $filename = time() . '-' . $image->getClientOriginalName();
-                $image->move(public_path('assets/img/products'), $filename);
-                $images[] = 'assets/img/products/' . $filename; // Simpan path relatif
-            }
-        }
 
-        $product = new Product();
-        $product->product_name = $request->product_name;
-        $product->description = $request->description;
-        $product->price = $request->price;
-        $product->stock = $request->stock;
-        $product->images = json_encode($images);
-        $product->save();
+        Product::create($request->all());
 
         return redirect()->route('products.index');
     }
@@ -87,42 +71,12 @@ class ProductController extends Controller
             'description' => 'nullable|string',
             'price' => 'required|numeric',
             'stock' => 'required|integer',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg', // Validasi gambar
         ]);
 
         $product = Product::findOrFail($id);
-    $oldImages = json_decode($product->images, true) ?? [];
+        $product->update($request->all());
 
-    $images = [];
-    if ($request->hasFile('images')) {
-        // Hapus gambar lama
-        foreach ($oldImages as $oldImage) {
-            $oldImagePath = public_path($oldImage);
-            if (File::exists($oldImagePath)) {
-                File::delete($oldImagePath);
-            }
-        }
-
-        // Unggah gambar baru
-        foreach ($request->file('images') as $image) {
-            $filename = time() . '-' . $image->getClientOriginalName();
-            $image->move(public_path('assets/img/products'), $filename);
-            $images[] = 'assets/img/products/' . $filename; // Simpan path relatif
-        }
-    } else {
-        // Jika tidak ada gambar baru yang diunggah, gunakan gambar lama
-        $images = $oldImages;
-    }
-
-    $product->product_name = $request->product_name;
-    $product->description = $request->description;
-    $product->price = $request->price;
-    $product->stock = $request->stock;
-    $product->images = json_encode($images);
-    $product->save();
-
-    return redirect()->route('products.index')->with('success', 'Product updated successfully.');
-
+        return redirect()->route('products.index');
     }
 
     /**
