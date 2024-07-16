@@ -10,6 +10,9 @@
     <!-- Spinner End -->
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 98a94c7 (update UI.)
         <!-- Carousel Start -->
         <div class="header-carousel owl-carousel">
             <div class="header-carousel-item bg-primary">
@@ -65,8 +68,11 @@
         </div>
         <!-- Carousel End -->
 
+<<<<<<< HEAD
 =======
 >>>>>>> parent of afef0c7 (Merge branch 'dev' of https://github.com/HariNovriansyah/WebBaleMaduTrigonaSenggigi into dev)
+=======
+>>>>>>> parent of 98a94c7 (update UI.)
 <div class="container mt-5">
     @if ($products->isEmpty())
         <p class="text-muted">No products available.</p>

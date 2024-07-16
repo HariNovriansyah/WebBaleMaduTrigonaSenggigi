@@ -10,6 +10,9 @@
     <!-- Spinner End -->
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 98a94c7 (update UI.)
         <!-- Carousel Start -->
         <div class="header-carousel owl-carousel">
             <div class="header-carousel-item bg-primary">
