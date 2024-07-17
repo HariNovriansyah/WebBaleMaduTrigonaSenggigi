@@ -53,8 +53,16 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         $token = $user->createToken('API Token')->plainTextToken;
+        
+        $url = '';
 
+        if($request->user()->role === 'admin'){
+            $url = '/admin/dashboard';
+        }elseif($request->user()->role === 'user'){
+            $url = '/home';
+        }
         return response()->json([
+            'redirect_url' => $url,
             'user' => $user,
             'token' => $token,
         ]);
