@@ -31,7 +31,7 @@ class ReviewController extends Controller
             'review' => $request->input('review'),
         ]);
 
-        return redirect()->back()->with('success', 'Review submitted successfully.');
+        return redirect()->route('orders.history')->with('success', 'Review submitted successfully.');
     }
 
     public function edit($reviewId)

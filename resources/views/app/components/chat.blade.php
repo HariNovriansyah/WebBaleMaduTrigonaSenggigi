@@ -16,12 +16,19 @@
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                         Select User
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="overflow-y: auto; max-height: 200px;">
                         @foreach (App\Models\User::where('role', 'user')->get() as $user)
-                            <li><a class="dropdown-item" href="#" data-user-id="{{ $user->id }}" data-user-name="{{ $user->name }}">{{ $user->name }}<span class="badge bg-danger ms-2" style="display: none;"></span></a></li>
-                            <input type="hidden" id="receiver_id" name="receiver_id" value="{{ $user->id }}">
+                            <li>
+                                <a class="dropdown-item" href="#" data-user-id="{{ $user->id }}" data-user-name="{{ $user->name }}">
+                                    {{ $user->name }}
+                                    <span class="badge bg-danger ms-2" style="display: none;"></span>
+                                </a>
+                            </li>
+
                         @endforeach
                     </ul>
+                    <input type="hidden" id="receiver_id" name="receiver_id" value="">
+
                 </div>
                 @endif
             <div class="form-group">

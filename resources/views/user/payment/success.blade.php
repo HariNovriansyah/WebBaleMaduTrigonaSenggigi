@@ -14,10 +14,10 @@
     <!-- Button to download receipt as PDF -->
     <a href="{{ route('order.receipt', $order->id) }}" class="btn btn-primary rounded-pill py-2 px-4 text-white mb-4">Download Receipt (PDF)</a>
 
-    @if (!$userHasReviewed)
+    @if ($order->status == "received")
         <!-- Link to review page -->
         <a href="{{ route('payment.review', $order->id) }}" class="btn btn-secondary rounded-pill py-2 px-4 text-white mb-4">Leave a Review</a>
-    @else
+    @elseif ($userHasReviewed)
         <div class="alert alert-info">You have already reviewed this product.</div>
     @endif
 </div>

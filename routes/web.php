@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/chat', [ChatController::class, 'index']);
     #admin routes
     Route::middleware(['role:admin'])->group(function () {
-        Route::view('/admin/dashboard', 'admin.dashboard')->name('admin.dashboard');
+        Route::get('/admin/dashboard', [HomeController::class, 'adminDashboard'])->name('admin.dashboard');
 
         #Blogs
         Route::resource('blogs', BlogController::class)->except(['show', 'all']);

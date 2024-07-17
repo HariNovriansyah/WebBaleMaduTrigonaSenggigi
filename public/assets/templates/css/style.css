@@ -97,7 +97,7 @@
 }
 
 
-/*** Topbar Start ***/ 
+/*** Topbar Start ***/
 .topbar .dropdown-toggle::after {
     border: none;
     content: "\f107";
@@ -304,7 +304,6 @@
     height: 100%;
     left: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, .2);
     display: flex;
     align-items: center;
 }
@@ -655,7 +654,7 @@
     overflow: hidden;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-} 
+}
 
 .team .team-item .team-img img {
     transition: 0.5s;

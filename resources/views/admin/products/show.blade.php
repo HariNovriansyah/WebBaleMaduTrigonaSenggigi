@@ -1,4 +1,32 @@
 @extends($layout)
+@section('style')
+<style>
+.star-rating {
+    display: flex;
+    align-items: center;
+}
+
+.star {
+    font-size: 1.5rem; /* Adjust size as needed */
+    color: #ccc; /* Grey color for empty stars */
+}
+
+.star.filled,
+.star.half-filled {
+    color: #ffc107; /* Gold color for filled stars */
+}
+
+.star.half-filled:before {
+    content: "\2605";
+    position: absolute;
+    width: 50%;
+    overflow: hidden;
+    color: #ffc107;
+}
+
+
+</style>
+@endsection
 @section('content')
 
     <!-- Spinner Start -->
@@ -26,59 +54,83 @@
                 @if ($products->isEmpty())
                     <p class="text-muted">No products available.</p>
                 @else
-                    @foreach ($products as $product)
-                        <div class="row justify-content-center mb-4">
-                            <div class="col-md-8 col-lg-8 col-xl-8 wow fadeInUp" data-wow-delay="0.2s">
-                                <div class="service-item d-flex" style="flex-wrap: wrap;">
-                                    <!-- Carousel for Images -->
-                                    <div class="col-md-4 d-flex align-items-center" style="padding: 0;">
-                                        <div id="productImagesCarousel{{ $product->id }}" class="carousel slide w-100"
-                                            data-bs-ride="carousel" style="height: 100%;">
-                                            <div class="carousel-inner" style="height: 100%;">
-                                                @foreach (json_decode($product->images) as $key => $image)
-                                                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}"
-                                                        style="height: 100%;">
-                                                        <img src="{{ asset($image) }}"
-                                                            class="d-block w-100 img-fluid rounded-top" alt="Product Image"
-                                                            style="height: 100%; object-fit: cover;">
-                                                    </div>
-                                                @endforeach
+                @foreach ($products as $product)
+                <div class="row justify-content-center mb-4">
+                    <div class="col-md-8 col-lg-8 col-xl-8 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="service-item d-flex" style="flex-wrap: wrap;">
+                            <!-- Carousel for Images -->
+                            <div class="col-md-4 d-flex align-items-center" style="padding: 0;">
+                                <div id="productImagesCarousel{{ $product->id }}" class="carousel slide w-100"
+                                    data-bs-ride="carousel" style="height: 100%;">
+                                    <div class="carousel-inner" style="height: 100%;">
+                                        @foreach (json_decode($product->images) as $key => $image)
+                                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}"
+                                                style="height: 100%;">
+                                                <img src="{{ asset($image) }}"
+                                                    class="d-block w-100 img-fluid rounded-top" alt="Product Image"
+                                                    style="height: 100%; object-fit: cover;">
                                             </div>
-                                            <button class="carousel-control-prev bg-transparent" type="button"
-                                                data-bs-target="#productImagesCarousel{{ $product->id }}"
-                                                data-bs-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="visually-hidden">Previous</span>
-                                            </button>
-                                            <button class="carousel-control-next bg-transparent" type="button"
-                                                data-bs-target="#productImagesCarousel{{ $product->id }}"
-                                                data-bs-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="visually-hidden">Next</span>
-                                            </button>
-                                        </div>
+                                        @endforeach
                                     </div>
+                                    <button class="carousel-control-prev bg-transparent" type="button"
+                                        data-bs-target="#productImagesCarousel{{ $product->id }}"
+                                        data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next bg-transparent" type="button"
+                                        data-bs-target="#productImagesCarousel{{ $product->id }}"
+                                        data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                            </div>
 
-                                    <!-- Service Content -->
-                                    <div class="col-md-8"
-                                        style="display: flex; flex-direction: column; justify-content: center;">
-                                        <div class="service-content p-4">
-                                            <div class="service-content-inner">
-                                                <a href="#"
-                                                    class="d-inline-block h4 mb-4">{{ $product->product_name }}</a>
-                                                <p class="mb-4">{{ $product->description }}</p>
-                                                <p class="mb-4"><strong>Rp{{ number_format($product->price, 2) }}</strong>
-                                                </p>
-                                                <p class="mb-4"><strong>{{ $product->stock }} left</strong></p>
-                                                <a href="{{ route('order.create', $product->id) }}"
-                                                    class="btn btn-primary rounded-pill py-2 px-4">Order</a>
+                            <!-- Service Content -->
+                            <div class="col-md-8"
+                                style="display: flex; flex-direction: column; justify-content: center;">
+                                <div class="service-content p-4">
+                                    <div class="service-content-inner">
+                                        <a href="#"
+                                            class="d-inline-block h4 mb-4">{{ $product->product_name }}</a>
+                                        <p class="mb-4">{{ $product->description }}</p>
+                                        <p class="mb-4"><strong>Rp{{ number_format($product->price, 2) }}</strong>
+                                        </p>
+                                        <p class="mb-4"><strong>{{ $product->stock }} left</strong></p>
+
+                                        <!-- Average Rating -->
+                                        @if ($product->reviews->isNotEmpty())
+                                            @php
+                                                $averageRating = $product->reviews->avg('rating');
+                                                $roundedRating = round($averageRating * 2) / 2; // Rounded to the nearest 0.5
+                                            @endphp
+                                            <div class="mb-4">
+                                                <div class="star-rating">
+                                                    @for ($i = 1; $i <= 5; $i++)
+                                                        @if ($i <= $roundedRating)
+                                                            <span class="star filled">&#9733;</span>
+                                                        @elseif ($i == ceil($roundedRating))
+                                                            <span class="star half-filled">&#9733;</span>
+                                                        @else
+                                                            <span class="star">&#9734;</span>
+                                                        @endif
+                                                    @endfor
+                                                </div>
+                                                <p>{{ number_format($averageRating, 1) }} out of 5</p>
                                             </div>
-                                        </div>
+                                        @endif
+
+                                        <a href="{{ route('order.create', $product->id) }}"
+                                            class="btn btn-primary rounded-pill py-2 px-4">Order</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    </div>
+                </div>
+            @endforeach
+
                 @endif
 
             </div>
@@ -92,8 +144,17 @@
                     <div class="card-body">
                         @foreach ($product->reviews as $review)
                             <div class="mb-3 border-bottom pb-3">
-                                <p><strong>{{ $review->user->name }}</strong> rated <span
-                                        class="badge bg-secondary">{{ $review->rating }}</span> out of 5</p>
+                                <p><strong>{{ $review->user->name }}</strong> rated:</p>
+                                <div class="star-rating">
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        @if ($i <= $review->rating)
+                                            <span class="star filled">&#9733;</span>
+                                        @else
+                                            <span class="star">&#9734;</span>
+                                        @endif
+                                    @endfor
+                                </div>
+                                <p>{{ $review->rating }} out of 5</p>
                                 <p>{{ $review->review }}</p>
                             </div>
                         @endforeach
@@ -101,6 +162,7 @@
                 </div>
             @endif
         @endforeach
+
     </div>
 
 @endsection
