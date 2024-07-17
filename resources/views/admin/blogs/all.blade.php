@@ -24,34 +24,51 @@
 
             <div class="row g-4 justify-content-center">
 
-                @foreach ($blogs as $blog)
-                    <div class="col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="blog-item">
-                            <div class="blog-img">
-                                <img src="{{ asset('assets/templates/img/blog-3.png') }}"
-                                    class="img-fluid rounded-top w-100" alt="">
-                                <div class="blog-categiry py-2 px-4">
-                                    <span></span>
-                                </div>
-                            </div>
-                            <div class="blog-content p-4">
-                                <div class="blog-comment d-flex justify-content-between mb-3">
-                                    <div class="small"><span class="fa fa-user text-primary"></span>
-                                        {{ $blog->author->username }}</div>
-                                    <div class="small"><span class="fa fa-calendar text-primary"></span>
-                                        {{ $blog->created_at->format('d M Y') }}</div>
-                                    <div class="small"><span class="fa fa-comment-alt text-primary"></span> 6 Comments
+                @if ($blogs->isEmpty())
+                    <p class="text-muted">No blogs available.</p>
+                @else
+                    @foreach ($blogs as $blog)
+                        <div class="col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.6s">
+                            <div class="blog-item">
+                                <div id="blogImagesCarousel{{ $blog->id }}" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        @foreach (json_decode($blog->images) as $key => $image)
+                                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                                <img src="{{ asset($image) }}"
+                                                    class="d-block w-100 img-fluid rounded-top" alt="Blog Image">
+                                            </div>
+                                        @endforeach
                                     </div>
+                                    <button class="carousel-control-prev bg-transparent" type="button"
+                                        data-bs-target="#blogImagesCarousel{{ $blog->id }}" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next bg-transparent" type="button"
+                                        data-bs-target="#blogImagesCarousel{{ $blog->id }}" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
                                 </div>
-                                <a href="#" class="h4 d-inline-block mb-3">{{ $blog->title }}</a>
-                                <p class="mb-3">{{ Str::limit($blog->content, 100) }}</p>
-                                <a href="{{ route('blogs.show', ['blog' => $blog->id]) }}"
-                                    class="btn btn-primary text-white rounded-pill py-2 px-4">Read More <i
-                                        class="fa fa-arrow-right"></i></a>
+                                <div class="blog-content p-4">
+                                    <div class="blog-comment d-flex justify-content-between mb-3">
+                                        <div class="small"><span class="fa fa-user text-primary"></span>
+                                            {{ $blog->author->username }}</div>
+                                        <div class="small"><span class="fa fa-calendar text-primary"></span>
+                                            {{ $blog->created_at->format('d M Y') }}</div>
+                                        <div class="small"><span class="fa fa-comment-alt text-primary"></span> 6 Comments
+                                        </div>
+                                    </div>
+                                    <a href="#" class="h4 d-inline-block mb-3">{{ $blog->title }}</a>
+                                    <p class="mb-3">{{ Str::limit($blog->content, 100) }}</p>
+                                    <a href="{{ route('blogs.show', ['blog' => $blog->id]) }}"
+                                        class="btn btn-primary text-white rounded-pill py-2 px-4">Read More <i
+                                            class="fa fa-arrow-right"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>

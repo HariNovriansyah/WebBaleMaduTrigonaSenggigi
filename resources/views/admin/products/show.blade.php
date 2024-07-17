@@ -11,23 +11,24 @@
     <!-- Spinner End -->
 
     <div class="container mt-5">
-        @if ($products->isEmpty())
-            <p class="text-muted">No products available.</p>
-        @else
-            @foreach ($products as $product)
-                <!-- Service Start -->
-                <div class="container-fluid service">
-                    <div class="container py-5">
-                        <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-                            <h4 class="text-primary">Product</h4>
-                            <h1 class="display-4 mb-4">We Have Best Product</h1>
-                            <p class="mb-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur adipisci
-                                facilis cupiditate recusandae aperiam temporibus corporis itaque quis facere, numquam, ad
-                                culpa deserunt sint dolorem autem obcaecati, ipsam mollitia hic.
-                            </p>
-                        </div>
+
+        <!-- Service Start -->
+        <div class="container-fluid service">
+            <div class="container py-5">
+                <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                    <h4 class="text-primary">Product</h4>
+                    <h1 class="display-4 mb-4">We Have Best Product</h1>
+                    <p class="mb-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur adipisci
+                        facilis cupiditate recusandae aperiam temporibus corporis itaque quis facere, numquam, ad
+                        culpa deserunt sint dolorem autem obcaecati, ipsam mollitia hic.
+                    </p>
+                </div>
+                @if ($products->isEmpty())
+                    <p class="text-muted">No products available.</p>
+                @else
+                    @foreach ($products as $product)
                         <div class="row justify-content-center">
-                            <div class="col-md-8 col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.2s">
+                            <div class="col-md-12 col-lg-12 col-xl-12 wow fadeInUp" data-wow-delay="0.2s">
                                 <div class="service-item">
 
 
@@ -41,12 +42,12 @@
                                                 </div>
                                             @endforeach
                                         </div>
-                                        <button class="carousel-control-prev" type="button"
+                                        <button class="carousel-control-prev bg-transparent" type="button"
                                             data-bs-target="#productImagesCarousel" data-bs-slide="prev">
                                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                             <span class="visually-hidden">Previous</span>
                                         </button>
-                                        <button class="carousel-control-next" type="button"
+                                        <button class="carousel-control-next bg-transparent" type="button"
                                             data-bs-target="#productImagesCarousel" data-bs-slide="next">
                                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                             <span class="visually-hidden">Next</span>
@@ -58,9 +59,9 @@
                                             <a href="#"
                                                 class="d-inline-block h4 mb-4">{{ $product->product_name }}</a>
                                             <p class="mb-4">{{ $product->description }}</p>
-                                            <p class="mb-4"><strong>Rp. {{ number_format($product->price, 2) }}</strong>
+                                            <p class="mb-4"><strong>Rp{{ number_format($product->price, 2) }}</strong>
                                             </p>
-                                            <p class="mb-4"><strong>Stock : {{ $product->stock }}</strong></p>
+                                            <p class="mb-4"><strong>{{ $product->stock }} left</strong></p>
                                             <a href="{{ route('order.create', $product->id) }}"
                                                 class="btn btn-primary rounded-pill py-2 px-4">Order</a>
                                         </div>
@@ -68,11 +69,12 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <!-- Service End -->
-            @endforeach
-        @endif
+                    @endforeach
+                @endif
+
+            </div>
+        </div>
+        <!-- Service End -->
 
         <h2 class="mb-4 text-center">Reviews</h2>
         @foreach ($products as $product)

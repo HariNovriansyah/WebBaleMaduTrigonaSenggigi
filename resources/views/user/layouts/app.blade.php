@@ -32,6 +32,13 @@
         <link href="{{ asset('assets/templates/css/style.css') }}" rel="stylesheet">
 
         <style>
+        /* :root{
+            --bs-primary : #ffbd67 !important;
+            --bs-blue : #ffbd67 !important;
+        } */
+         .main-bg{
+            background-color: #ffbd67;
+         }
          .floating-chat-button {
             position: fixed;
             bottom: 2.5rem;
@@ -210,6 +217,7 @@
     @yield('content')
 
     @include('app.components.chat')
+    @include('user.layouts.footer')
 
     {{-- <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a> --}}
 

@@ -31,6 +31,16 @@
 
     <title>Madu Trigona</title>
     @yield('style')
+    <style>
+                /* :root{
+            --bs-primary : #ffbd67 !important;
+            --bs-blue : #73ab45 !important;
+        } */
+
+        btn-primary {
+            background-color: var(--bs-primary) !important;
+        }
+    </style>
 </head>
 
 <body>
