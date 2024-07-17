@@ -35,9 +35,10 @@
                     </tr>
                 </thead>
                 <tbody>
-
                     @if ($orders->isEmpty())
-                        <p class="text-muted">No blogs available.</p>
+                        <tr>
+                            <td colspan="5" class="text-center text-muted">No Orders available.</td>
+                        </tr>
                     @else
                         @foreach ($orders as $order)
                             <tr>
@@ -58,8 +59,8 @@
                                     @elseif($order->status == 'received')
                                         <a href="{{ route('payment.success', $order->id) }}"
                                             class="btn btn-success btn-sm">{{ ucfirst($order->status) }}</a>
-                                        @if ($review)
-                                            <a href="{{ route('reviews.edit', $review->id) }}"
+                                        @if (isset($reviews[$order->product->id]))
+                                            <a href="{{ route('reviews.edit', $reviews[$order->product->id]->id) }}"
                                                 class="btn btn-warning btn-sm">Edit Review</a>
                                         @else
                                             <a href="{{ route('payment.review', $order->id) }}"

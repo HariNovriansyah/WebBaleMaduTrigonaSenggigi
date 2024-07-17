@@ -38,12 +38,19 @@ class OrderController extends Controller
 
     public function orderHistory()
     {
-        $orders = Order::where('user_id', auth()->id())->with('product')->get();
+        $orders = Order::where('user_id', auth()->id())->with('product.reviews')->get();
+
+        $reviews = [];
+
         foreach ($orders as $order) {
             $review = $order->product->reviews->where('user_id', auth()->id())->first();
+            if ($review) {
+                $reviews[$order->product->id] = $review;
+            }
         }
 
-        return view('user.orders.history', compact('orders','review'));
+        return view('user.orders.history', compact('orders', 'reviews'));
+
     }
 
     public function generateReceipt(Order $order)
