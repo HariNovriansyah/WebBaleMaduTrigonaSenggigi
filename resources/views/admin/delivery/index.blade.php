@@ -19,7 +19,7 @@
             </thead>
             <tbody>
 
-                @if ($blogs->isEmpty())
+                @if ($orders->isEmpty())
                     <p class="text-muted">No blogs available.</p>
                 @else
                     @foreach ($orders as $order)
