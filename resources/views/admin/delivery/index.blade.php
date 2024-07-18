@@ -30,13 +30,13 @@
                             <td>{{ $order->status }}</td>
                             <td>
                                 @if ($order->status == 'approved')
-                                    <form action="{{ route('delivery.deliverOrder', $order->id) }}" method="POST"
+                                    <form class="m-0" action="{{ route('delivery.deliverOrder', $order->id) }}" method="POST"
                                         style="display:inline-block;">
                                         @csrf
-                                        <button type="submit" class="btn btn-primary">Deliver Order</button>
+                                        <button type="submit">Deliver Order</button>
                                     </form>
                                 @elseif($order->status == 'delivering')
-                                    <form action="{{ route('delivery.completeOrder', $order->id) }}" method="POST"
+                                    <form class="m-0" action="{{ route('delivery.completeOrder', $order->id) }}" method="POST"
                                         style="display:inline-block;">
                                         @csrf
                                         <button type="submit" class="btn btn-success">Mark as Delivered</button>

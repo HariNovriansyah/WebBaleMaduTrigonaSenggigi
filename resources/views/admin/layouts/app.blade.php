@@ -344,6 +344,7 @@
         @include('app.components.chat')
     </div>
     @include('admin.layouts.footer')
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

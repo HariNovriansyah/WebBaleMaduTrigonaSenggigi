@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Orders Report</title>
+    <title>Report</title>
     <style>
         table {
             width: 100%;
@@ -21,7 +21,12 @@
     </style>
 </head>
 <body>
-    <h1>Orders Report</h1>
+    <h1>Report</h1>
+    @if ($month && $year)
+        <p>Period: {{ DateTime::createFromFormat('!m', $month)->format('F') }} {{ $year }}</p>
+    @elseif ($year)
+        <p>Year: {{ $year }}</p>
+    @endif
 
     @if ($orders->isEmpty())
         <p>No orders available.</p>

@@ -51,7 +51,7 @@
                                         <a href="{{ route('payment.success', $order->id) }}"
                                             class="btn btn-success btn-sm">{{ ucfirst($order->status) }}</a>
                                     @elseif($order->status == 'delivered')
-                                        <form action="{{ route('orders.received', $order->id) }}" method="POST"
+                                        <form class="m-0" action="{{ route('orders.received', $order->id) }}" method="POST"
                                             style="display:inline-block;">
                                             @csrf
                                             <button type="submit" class="btn btn-success">Received</button>
@@ -66,9 +66,12 @@
                                             <a href="{{ route('payment.review', $order->id) }}"
                                                 class="btn btn-warning btn-sm">Review</a>
                                         @endif
-                                    @else
+                                    @elseif ($order->status == 'pending')
                                         <a href="{{ route('payment.pending', $order->id) }}"
                                             class="btn btn-warning btn-sm">{{ ucfirst($order->status) }}</a>
+                                    @else
+                                        <a href="#"
+                                            class="btn btn-secondary btn-sm">{{ ucfirst($order->status) }}</a>
                                     @endif
                                 </td>
                             </tr>

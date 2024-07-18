@@ -14,7 +14,7 @@
                                 @foreach (json_decode($blog->images, true) as $index => $image)
                                     <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
                                         <img src="{{ asset($image) }}" class="d-block w-100 img-fluid rounded"
-                                            alt="Image {{ $index + 1 }}">
+                                            alt="Image {{ $index + 1 }}" style="height: 400px; object-fit: cover;">
                                     </div>
                                 @endforeach
                             </div>
@@ -34,7 +34,7 @@
                     <p class="text-muted">Written by: {{ $blog->author->name }}</p>
                     <small class="text-muted">Published on: {{ $blog->created_at->format('d M Y') }}</small>
                     <hr>
-                    <p class="blog-content">{{ $blog->content }}</p>
+                    <p class="blog-content">{!! nl2br(e($blog->content)) !!}</p>
                     <!-- Centered Video -->
                     @if ($blog->video)
                         <div class="video-container text-center mt-4">

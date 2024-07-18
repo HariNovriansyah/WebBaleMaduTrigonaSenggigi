@@ -2,7 +2,7 @@
 @extends($layout)
 @section('content')
 
-<div>
+<div class="container bg-white p-4 rounded-4">
     <div>
         @include('profile.partials.update-profile-information-form')
     </div>

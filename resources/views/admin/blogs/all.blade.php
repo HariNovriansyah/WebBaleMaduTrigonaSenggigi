@@ -1,4 +1,4 @@
-@extends($layout)
+@extends('app.layouts.app')
 @section('content')
     <!-- Spinner Start -->
     <div id="spinner"
@@ -35,7 +35,7 @@
                                         @foreach (json_decode($blog->images) as $key => $image)
                                             <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                                                 <img src="{{ asset($image) }}"
-                                                    class="d-block w-100 img-fluid rounded-top" alt="Blog Image">
+                                                    class="d-block w-100 img-fluid rounded-top" alt="Blog Image" style="height: 250px; object-fit: cover;">
                                             </div>
                                         @endforeach
                                     </div>
@@ -56,7 +56,7 @@
                                             {{ $blog->author->username }}</div>
                                         <div class="small"><span class="fa fa-calendar text-primary"></span>
                                             {{ $blog->created_at->format('d M Y') }}</div>
-                                        <div class="small"><span class="fa fa-comment-alt text-primary"></span> 6 Comments
+                                        <div class="small"><span class="fa fa-comment-alt text-primary"></span> {{ $blog->comments->count() }} Comments
                                         </div>
                                     </div>
                                     <a href="#" class="h4 d-inline-block mb-3">{{ $blog->title }}</a>
