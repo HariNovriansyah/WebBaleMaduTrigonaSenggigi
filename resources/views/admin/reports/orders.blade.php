@@ -22,19 +22,19 @@
                                     placeholder="Filter orders...">
                                 <div class="btn-group" role="group">
                                     <button type="button" class="btn btn-secondary filter-status"
-                                        data-status="">All</button>
+                                        data-status="">Semua</button>
                                     <button type="button" class="btn btn-warning filter-status"
                                         data-status="pending">Pending</button>
                                     <button type="button" class="btn btn-danger filter-status"
-                                        data-status="reject">Reject</button>
+                                        data-status="ditolak">Ditolak</button>
                                     <button type="button" class="btn btn-success filter-status"
-                                        data-status="approved">Approved</button>
+                                        data-status="disetujui">Disetujui</button>
                                     <button type="button" class="btn btn-secondary filter-status"
-                                        data-status="delivering">Delivering</button>
+                                        data-status="dikirim">Dikirim</button>
                                     <button type="button" class="btn btn-secondary filter-status"
-                                        data-status="delivered">Delivered</button>
+                                        data-status="terkirim">Terkirim</button>
                                     <button type="button" class="btn btn-success filter-status"
-                                        data-status="received">Received</button>
+                                        data-status="diterima">Diterima</button>
                                 </div>
                                 <select id="filterMonth" class="form-select mt-2">
                                     <option value="">All Months</option>

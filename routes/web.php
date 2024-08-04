@@ -56,6 +56,7 @@ Route::middleware('auth')->group(function () {
 
         #Delivery
         Route::get('/delivery', [DeliveryController::class, 'index'])->name('delivery.index');
+        Route::post('/delivery/{order}/packing', [DeliveryController::class, 'packingOrder'])->name('delivery.packingOrder');
         Route::post('/delivery/{order}/deliver', [DeliveryController::class, 'deliverOrder'])->name('delivery.deliverOrder');
         Route::post('/delivery/{order}/complete', [DeliveryController::class, 'completeOrder'])->name('delivery.completeOrder');
     });

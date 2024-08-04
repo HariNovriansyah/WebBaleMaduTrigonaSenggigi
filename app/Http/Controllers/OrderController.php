@@ -64,11 +64,11 @@ class OrderController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        if ($order->status == 'delivered') {
-            $order->status = 'received';
+        if ($order->status == 'terkirim') {
+            $order->status = 'diterima';
             $order->save();
 
-            return redirect()->route('orders.history')->with('success', 'Order status updated to received');
+            return redirect()->route('orders.history')->with('success', 'Pesanan telah diterima');
         }
 
         return redirect()->route('orders.history')->with('error', 'Invalid operation');

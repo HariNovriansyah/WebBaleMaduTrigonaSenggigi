@@ -104,6 +104,7 @@
                                             <div class="service-content-inner">
                                                 <a href="#"
                                                     class="d-inline-block h4 mb-4">{{ $product->product_name }}</a>
+                                                <p class="d-inline-block h4 mb-4">{{ $product->size }}</p>
                                                 <div class="m-3" style="max-height: 200px; overflow-y: auto;">
                                                     <p class="mb-4">{!! nl2br(e($product->description)) !!}</p>
                                                 </div>

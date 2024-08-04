@@ -29,20 +29,26 @@
                             <td>{{ $order->total_price }}</td>
                             <td>{{ $order->status }}</td>
                             <td>
-                                @if ($order->status == 'approved')
+                                @if ($order->status == 'disetujui')
+                                    <form class="m-0" action="{{ route('delivery.packingOrder', $order->id) }}" method="POST"
+                                        style="display:inline-block;">
+                                        @csrf
+                                        <button type="submit">Pengemasan</button>
+                                    </form>
+                                @elseif($order->status == 'dikemas')
                                     <form class="m-0" action="{{ route('delivery.deliverOrder', $order->id) }}" method="POST"
                                         style="display:inline-block;">
                                         @csrf
-                                        <button type="submit">Deliver Order</button>
+                                        <button type="submit" class="btn btn-success">Kirim Pesanan</button>
                                     </form>
-                                @elseif($order->status == 'delivering')
+                                @elseif($order->status == 'dikirim')
                                     <form class="m-0" action="{{ route('delivery.completeOrder', $order->id) }}" method="POST"
                                         style="display:inline-block;">
                                         @csrf
-                                        <button type="submit" class="btn btn-success">Mark as Delivered</button>
+                                        <button type="submit" class="btn btn-success">Konfirmasi Pengiriman</button>
                                     </form>
                                 @else
-                                    Delivered
+                                    Pesanan telah dikirimkan
                                 @endif
                             </td>
                         </tr>

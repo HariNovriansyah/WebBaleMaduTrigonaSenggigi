@@ -47,16 +47,16 @@
                                 <td>{{ $order->quantity }}</td>
                                 <td>Rp{{ number_format($order->total_price, 0, ',', '.') }}</td>
                                 <td>
-                                    @if ($order->status == 'approved')
+                                    @if ($order->status == 'disetujui')
                                         <a href="{{ route('payment.success', $order->id) }}"
                                             class="btn btn-success btn-sm">{{ ucfirst($order->status) }}</a>
-                                    @elseif($order->status == 'delivered')
+                                    @elseif($order->status == 'terkirim')
                                         <form class="m-0" action="{{ route('orders.received', $order->id) }}" method="POST"
                                             style="display:inline-block;">
                                             @csrf
-                                            <button type="submit" class="btn btn-success">Received</button>
+                                            <button type="submit" class="btn btn-success">Konfirmasi Pesanan</button>
                                         </form>
-                                    @elseif($order->status == 'received')
+                                    @elseif($order->status == 'diterima')
                                         <a href="{{ route('payment.success', $order->id) }}"
                                             class="btn btn-success btn-sm">{{ ucfirst($order->status) }}</a>
                                         @if (isset($reviews[$order->product->id]))

@@ -10,6 +10,10 @@
                 <input type="text" id="product_name" name="product_name" class="form-control" required>
             </div>
             <div class="form-group mb-3">
+                <label for="size" class="form-label">Product Size</label>
+                <input type="text" id="size" name="size" class="form-control" required>
+            </div>
+            <div class="form-group mb-3">
                 <label for="description" class="form-label">Description</label>
                 <textarea id="description" name="description" rows="4" class="form-control"></textarea>
             </div>

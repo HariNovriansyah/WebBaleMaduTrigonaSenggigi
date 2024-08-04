@@ -55,12 +55,12 @@ class PaymentController extends Controller
             $order = Order::findOrFail($order_id);
 
             if ($transaction_status == 'capture' || $transaction_status == 'settlement') {
-                $order->status = 'approved';
+                $order->status = 'disetujui';
                 $order->save();
 
                 return response()->json(['status' => 'success', 'message' => 'Transaction status updated']);
             } elseif ($transaction_status == 'deny' || $transaction_status == 'expire' || $transaction_status == 'cancel') {
-                $order->status = 'rejected';
+                $order->status = 'ditolak';
                 $order->save();
 
                 return response()->json(['status' => 'failed', 'message' => 'Transaction status failed']);

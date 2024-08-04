@@ -13,6 +13,7 @@
             @foreach ($products as $product)
                 <li class="mb-4">
                     <h2 class="mb-2">{{ $product->product_name }}</h2>
+                    <p class="mb-2">{{ $product->size }}</p>
                     <p class="mb-2">{{ Str::limit($product->description, 200) }}</p>
                     <p class="mb-2">Price: {{ $product->price }}</p>
                     <p class="mb-2">Stock: {{ $product->stock }}</p>
